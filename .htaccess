@@ -1,0 +1,39 @@
+Options -Indexes
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^login$ pages/_login.php [L]
+RewriteRule ^act-login$ process/_cek_login.php [L]
+RewriteRule ^dashboard$ pages/_dashboard.php?page=dashboard [L]
+
+RewriteRule ^daily-activity$ pages/_dashboard.php?page=daily-activity [L]
+RewriteRule ^daily-activity-fungsi$ pages/_dashboard.php?page=daily-activity-fungsi [L]
+RewriteRule ^new-activity$ pages/_dashboard.php?page=new-activity [L]
+RewriteRule ^save-activity-([0-9A-Z-]+)$ process/_save_data.php?action=save-activity&id=$1 [L]
+RewriteRule ^detail-activity-([0-9]+)$ pages/_dashboard.php?page=detail-activity&id=$1 [L]
+RewriteRule ^update-activity-([0-9]+)$ process/_save_data.php?action=update-activity&id=$1 [L]
+RewriteRule ^delete-activity-([0-9]+)$ process/_delete_data.php?action=delete-activity&id=$1 [L]
+RewriteRule ^daily-activity-status-([A-Za-z]+)$ pages/_dashboard.php?page=daily-activity-status&status=$1 [L]
+RewriteRule ^daily-activity-fungsi-status-([A-Za-z]+)$ pages/_dashboard.php?page=daily-activity-fungsi-status&status=$1 [L]
+
+RewriteRule ^my-assignment$ pages/_dashboard.php?page=my-assignment [L]
+RewriteRule ^detail-my-assignment-([0-9A-Z-]+)$ pages/_dashboard.php?page=detail-my-assignment&id=$1 [L]
+RewriteRule ^update-my-assignment-([0-9A-Z-]+)$ process/_save_data.php?action=update-my-assignment&id=$1 [L]
+RewriteRule ^my-assignment-status-([A-Za-z]+)$ pages/_dashboard.php?page=my-assignment-status&status=$1 [L]
+
+RewriteRule ^to-do-list$ pages/_dashboard.php?page=to-do-list [L]
+RewriteRule ^new-to-do-list$ pages/_dashboard.php?page=new-to-do-list [L]
+RewriteRule ^save-to-do-list-([0-9A-Z-]+)$ process/_save_data.php?action=save-to-do-list&id=$1 [L]
+RewriteRule ^detail-to-do-list-([0-9]+)$ pages/_dashboard.php?page=detail-to-do-list&id=$1 [L]
+RewriteRule ^update-to-do-list-([0-9]+)$ process/_save_data.php?action=update-to-do-list&id=$1 [L]
+RewriteRule ^delete-to-do-list-([0-9]+)$ process/_delete_data.php?action=delete-to-do-list&id=$1 [L]
+RewriteRule ^to-do-list-status-([A-Za-z]+)$ pages/_dashboard.php?page=to-do-list-status&status=$1 [L]
+
+RewriteRule ^change-password$ pages/_dashboard.php?page=change-password [L]
+RewriteRule ^save-new-password-([0-9A-Z-]+)$ process/_save_data.php?action=save-new-password&id=$1 [L]
+
+RewriteRule ^logout$ process/_logout.php [L]
+
+
