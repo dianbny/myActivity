@@ -182,7 +182,7 @@
 
         <label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;Dashboard</label>
         <p style="margin:20px 0px;font-size:13px;">
-           &nbsp;Hi, <?= $dataUser['_nama_pekerja']; ?> <br>
+           &nbsp;Hi, <strong><?= $dataUser['_nama_pekerja']; ?></strong><br>
            &nbsp;<a href="logout" class="btn-danger">Log Out &nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></a>
         </p>
         <!-- Dashboar Total -->
@@ -213,6 +213,11 @@
                     <strong><?= ($dataUserLogin['_level'] == "user") ? "My Assignment" : "Assignment" ?></strong>
                         <?php
                             if($dataUserLogin['_level'] == "user"){ ?>
+                                <span class="span-ket" style="background-color:dodgerblue;"><a href="my-assignment-status-<?= "Request"; ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Request (<?= $getData->cekAssUserbyStatus($dataUser['_id_pekerja'], date('Y'), "Request"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:green;"><a href="my-assignment-status-<?= "Done"; ?>"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Done (<?= $getData->cekAssUserbyStatus($dataUser['_id_pekerja'], date('Y'), "Done"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:darkorange;"><a href="my-assignment-status-<?= "Pending"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Pending (<?= $getData->cekAssUserbyStatus($dataUser['_id_pekerja'], date('Y'), "Pending"); ?>)</a></span>
+                      <?php }
+                            else { ?>
                                 <span class="span-ket" style="background-color:dodgerblue;"><a href="my-assignment-status-<?= "Request"; ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Request (<?= $getData->cekAssUserbyStatus($dataUser['_id_pekerja'], date('Y'), "Request"); ?>)</a></span>
                                 <span class="span-ket" style="background-color:green;"><a href="my-assignment-status-<?= "Done"; ?>"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Done (<?= $getData->cekAssUserbyStatus($dataUser['_id_pekerja'], date('Y'), "Done"); ?>)</a></span>
                                 <span class="span-ket" style="background-color:darkorange;"><a href="my-assignment-status-<?= "Pending"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Pending (<?= $getData->cekAssUserbyStatus($dataUser['_id_pekerja'], date('Y'), "Pending"); ?>)</a></span>
