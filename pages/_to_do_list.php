@@ -84,4 +84,4 @@
 <?php }
 ?>
 <a href="new-to-do-list" class="linkTransferPg"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp; New List</a>
-<a href="daily-activity" class="linkTransferPg"><i class="fa fa-refresh" aria-hidden="true"></i> &nbsp; Refresh</a>
+<a href="to-do-list" class="linkTransferPg"><i class="fa fa-refresh" aria-hidden="true"></i> &nbsp; Refresh</a>
