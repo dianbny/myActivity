@@ -18,7 +18,7 @@
 
 <label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;To Do List</label>
 
-    <form method="POST" action="daily-activity" class="form-table">
+    <form method="POST" action="to-do-list" class="form-table">
         <select name="month" class="select" required>
             <option value="" selected>- Select Month -</option>
                 <?php
