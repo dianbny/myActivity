@@ -43,7 +43,7 @@
         <?php
              if($getData->cekToDoList($dataUser['_id_pekerja'], $bulan, $tahun) > 0){
         ?>
-        <span style="font-size:12px;">To Do List : <?= $bulan."/".$tahun; ?> | Ket :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Waiting </span>
+        <span style="font-size:12px;">To Do List : <?= $bulan."/".$tahun; ?> | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Waiting </span>
         <div class="table-layout">
             <table class="table-style">
                 <tr>
