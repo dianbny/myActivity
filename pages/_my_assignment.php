@@ -101,4 +101,4 @@
 <?php }
 ?>
 
-<a href="my-assigment" class="linkTransferPg"><i class="fa fa-refresh" aria-hidden="true"></i> &nbsp; Refresh</a>
+<a href="my-assignment" class="linkTransferPg"><i class="fa fa-refresh" aria-hidden="true"></i> &nbsp; Refresh</a>

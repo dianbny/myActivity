@@ -202,12 +202,12 @@
 		}
 
 		//Cek assignment by Status
-		function cekAssUserbyStatus($id, $thn, $status){
+		function cekAssUserbyStatus($tabelid, $id, $thn, $status){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
 			$thnFilter = mysqli_real_escape_string($this->koneksi, $thn);
 			$statusFilter = mysqli_real_escape_string($this->koneksi, $status);
 			
-			$dataAssignment = mysqli_query($this->koneksi,"SELECT * FROM _tb_assignment WHERE _id_user = '$idFilter' AND YEAR(_tanggal_tugas) = '$thnFilter' AND _status = '$statusFilter'");
+			$dataAssignment = mysqli_query($this->koneksi,"SELECT * FROM _tb_assignment WHERE $tabelid = '$idFilter' AND YEAR(_tanggal_tugas) = '$thnFilter' AND _status = '$statusFilter'");
 			$cekJumlah = mysqli_num_rows($dataAssignment);
 			
 			return $cekJumlah;
