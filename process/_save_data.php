@@ -91,7 +91,7 @@
                     $aktifitas = trim($_POST['activity']);
                     $status = $_POST['status'];
 
-                    $saveData->simpanAktifitas($id, $tanggal, $aktifitas, $status); ?>
+                    $saveData->simpanAktifitas($id, $tanggal, ucwords($aktifitas), $status); ?>
 
                             <script>
                                 setTimeout(function() { 
@@ -182,7 +182,7 @@
                     $aktifitas = trim($_POST['activity']);
                     $status = $_POST['status'];
 
-                    $saveData->updateAktifitas($id, $tanggal, $aktifitas, $status); ?>
+                    $saveData->updateAktifitas($id, $tanggal, ucwords($aktifitas), $status); ?>
 
                             <script>
                                 setTimeout(function() { 
@@ -275,8 +275,8 @@
                     $info = trim($_POST['information']);
                     $dataAssignment = $getData->getMyAssignmentbyID($id);
 
-                    $saveData->updateMyAssignment($id, $status, $info); 
-                    $saveData->simpanAktifitas($dataAssignment['_id_user'], $tanggal, $tugas, $status)
+                    $saveData->updateMyAssignment($id, $status, ucwords($info)); 
+                    $saveData->simpanAktifitas($dataAssignment['_id_user'], $tanggal, ucwords($tugas), $status)
                     ?>
 
                             <script>
@@ -368,7 +368,7 @@
                     $aktifitas = trim($_POST['activity']);
                     $status = "Waiting";
 
-                    $saveData->simpanToDoList($id, $tanggal, $aktifitas, $status); ?>
+                    $saveData->simpanToDoList($id, $tanggal, ucwords($aktifitas), $status); ?>
 
                             <script>
                                 setTimeout(function() { 
@@ -459,7 +459,7 @@
                     $aktifitas = trim($_POST['activity']);
                     $status = $_POST['status'];
 
-                    $saveData->updateToDoList($id, $tanggal, $aktifitas, $status); ?>
+                    $saveData->updateToDoList($id, $tanggal, ucwords($aktifitas), $status); ?>
 
                             <script>
                                 setTimeout(function() { 
