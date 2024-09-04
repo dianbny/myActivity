@@ -19,6 +19,11 @@
 <label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;Daily Activity</label>
 
     <form method="POST" action="daily-activity" class="form-table">
+        <select name="organize" class="select" required>
+            <option value="" selected>- Select Organize -</option>
+            <option value="GA">General Activity</option>
+            <option value="EA">Engineer Activity</option>
+        </select>
         <select name="month" class="select" required>
             <option value="" selected>- Select Month -</option>
                 <?php
