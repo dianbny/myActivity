@@ -228,12 +228,12 @@
 		}
 
 		//List Assignment
-		function ListMyAssignmentLimit($id, $bln, $thn){
+		function ListMyAssignmentLimit($tabelid, $id, $bln, $thn){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
 			$blnFilter = mysqli_real_escape_string($this->koneksi, $bln);
 			$thnFilter = mysqli_real_escape_string($this->koneksi, $thn);
 			
-			$dataAssignment= mysqli_query($this->koneksi,"SELECT * FROM _tb_assignment WHERE _id_user = '$idFilter' AND MONTH(_tanggal_tugas) = '$blnFilter' AND YEAR(_tanggal_tugas) = '$thnFilter' ORDER BY _tanggal_tugas DESC, _id_tugas DESC LIMIT 3");
+			$dataAssignment= mysqli_query($this->koneksi,"SELECT * FROM _tb_assignment WHERE $tabelid = '$idFilter' AND MONTH(_tanggal_tugas) = '$blnFilter' AND YEAR(_tanggal_tugas) = '$thnFilter' ORDER BY _tanggal_tugas DESC, _id_tugas DESC LIMIT 3");
 			while($listAssignment = mysqli_fetch_assoc($dataAssignment)){
 				$result[] = $listAssignment;
 			}
