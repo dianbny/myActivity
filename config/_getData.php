@@ -242,12 +242,12 @@
 		}
 
 		//List Daily Activity by Status
-		function ListAssUserbyStatus($id, $thn, $status){
+		function ListAssUserbyStatus($tabelid, $id, $thn, $status){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
 			$thnFilter = mysqli_real_escape_string($this->koneksi, $thn);
 			$statusFilter = mysqli_real_escape_string($this->koneksi, $status);
 
-			$dataAssignment = mysqli_query($this->koneksi,"SELECT * FROM _tb_assignment WHERE _id_user = '$idFilter' AND YEAR(_tanggal_tugas) = '$thnFilter' AND _status = '$statusFilter' ORDER BY _tanggal_tugas DESC, _id_tugas DESC");
+			$dataAssignment = mysqli_query($this->koneksi,"SELECT * FROM _tb_assignment WHERE $tabelid = '$idFilter' AND YEAR(_tanggal_tugas) = '$thnFilter' AND _status = '$statusFilter' ORDER BY _tanggal_tugas DESC, _id_tugas DESC");
 			while($listAssignment = mysqli_fetch_assoc($dataAssignment)){
 				$result[] = $listAssignment;
 			}
@@ -339,6 +339,18 @@
 			$getTDL = mysqli_fetch_assoc($dataTDL);
 			
 			return $getTDL;
+		}
+
+		//List Engineer
+		function listEngineerbyFungsi($fungsi){
+			$fungsiFilter = mysqli_real_escape_string($this->koneksi, $fungsi);
+			
+			$dataPekerja = mysqli_query($this->koneksi,"SELECT * FROM _tb_pekerja_pegawai WHERE _fungsi = '$fungsiFilter' AND _status = 'TKJP/MK'");
+			while($listPekerja = mysqli_fetch_assoc($dataPekerja)){
+				$result[] = $listPekerja;
+			}
+
+			return $result;
 		}
 
 		
