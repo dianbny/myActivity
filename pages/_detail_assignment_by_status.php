@@ -28,7 +28,7 @@
                     <th>Engineer</th>
                     <th style="text-align:center;">Status</th>
                     <th>Information</th>
-                    <th style="text-align:center;">Action</th>
+                    <th colspan="2" style="text-align:center;">Action</th>
                 </tr>
                 <?php
                     $no = 1;
