@@ -190,12 +190,12 @@
 		}
 
 		//Cek My assignment
-		function cekMyAssignment($id, $bln, $thn){
+		function cekMyAssignment($tabelid, $id, $bln, $thn){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
 			$blnFilter = mysqli_real_escape_string($this->koneksi, $bln);
 			$thnFilter = mysqli_real_escape_string($this->koneksi, $thn);
 
-			$dataAssignment = mysqli_query($this->koneksi,"SELECT * FROM _tb_assignment WHERE _id_user = '$idFilter' AND MONTH(_tanggal_tugas) = '$blnFilter' AND YEAR(_tanggal_tugas) = '$thnFilter'");
+			$dataAssignment = mysqli_query($this->koneksi,"SELECT * FROM _tb_assignment WHERE $tabelid = '$idFilter' AND MONTH(_tanggal_tugas) = '$blnFilter' AND YEAR(_tanggal_tugas) = '$thnFilter'");
 			$cekJumlah = mysqli_num_rows($dataAssignment);
 			
 			return $cekJumlah;
@@ -214,12 +214,12 @@
 		}
 
 		//List Assignment
-		function ListMyAssignment($id, $bln, $thn){
+		function ListMyAssignment($tabelid, $id, $bln, $thn){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
 			$blnFilter = mysqli_real_escape_string($this->koneksi, $bln);
 			$thnFilter = mysqli_real_escape_string($this->koneksi, $thn);
 			
-			$dataAssignment= mysqli_query($this->koneksi,"SELECT * FROM _tb_assignment WHERE _id_user = '$idFilter' AND MONTH(_tanggal_tugas) = '$blnFilter' AND YEAR(_tanggal_tugas) = '$thnFilter' ORDER BY _tanggal_tugas DESC");
+			$dataAssignment= mysqli_query($this->koneksi,"SELECT * FROM _tb_assignment WHERE $tabelid = '$idFilter' AND MONTH(_tanggal_tugas) = '$blnFilter' AND YEAR(_tanggal_tugas) = '$thnFilter' ORDER BY _tanggal_tugas DESC, _id_tugas DESC");
 			while($listAssignment = mysqli_fetch_assoc($dataAssignment)){
 				$result[] = $listAssignment;
 			}
@@ -233,7 +233,7 @@
 			$blnFilter = mysqli_real_escape_string($this->koneksi, $bln);
 			$thnFilter = mysqli_real_escape_string($this->koneksi, $thn);
 			
-			$dataAssignment= mysqli_query($this->koneksi,"SELECT * FROM _tb_assignment WHERE _id_user = '$idFilter' AND MONTH(_tanggal_tugas) = '$blnFilter' AND YEAR(_tanggal_tugas) = '$thnFilter' ORDER BY _tanggal_tugas DESC LIMIT 3");
+			$dataAssignment= mysqli_query($this->koneksi,"SELECT * FROM _tb_assignment WHERE _id_user = '$idFilter' AND MONTH(_tanggal_tugas) = '$blnFilter' AND YEAR(_tanggal_tugas) = '$thnFilter' ORDER BY _tanggal_tugas DESC, _id_tugas DESC LIMIT 3");
 			while($listAssignment = mysqli_fetch_assoc($dataAssignment)){
 				$result[] = $listAssignment;
 			}
@@ -247,7 +247,7 @@
 			$thnFilter = mysqli_real_escape_string($this->koneksi, $thn);
 			$statusFilter = mysqli_real_escape_string($this->koneksi, $status);
 
-			$dataAssignment = mysqli_query($this->koneksi,"SELECT * FROM _tb_assignment WHERE _id_user = '$idFilter' AND YEAR(_tanggal_tugas) = '$thnFilter' AND _status = '$statusFilter' ORDER BY _tanggal_tugas DESC");
+			$dataAssignment = mysqli_query($this->koneksi,"SELECT * FROM _tb_assignment WHERE _id_user = '$idFilter' AND YEAR(_tanggal_tugas) = '$thnFilter' AND _status = '$statusFilter' ORDER BY _tanggal_tugas DESC, _id_tugas DESC");
 			while($listAssignment = mysqli_fetch_assoc($dataAssignment)){
 				$result[] = $listAssignment;
 			}
@@ -295,7 +295,7 @@
 			$blnFilter = mysqli_real_escape_string($this->koneksi, $bln);
 			$thnFilter = mysqli_real_escape_string($this->koneksi, $thn);
 			
-			$dataTDL= mysqli_query($this->koneksi,"SELECT * FROM _tb_to_do_list WHERE _id_pekerja = '$idFilter' AND MONTH(_tanggal) = '$blnFilter' AND YEAR(_tanggal) = '$thnFilter' ORDER BY _tanggal DESC");
+			$dataTDL= mysqli_query($this->koneksi,"SELECT * FROM _tb_to_do_list WHERE _id_pekerja = '$idFilter' AND MONTH(_tanggal) = '$blnFilter' AND YEAR(_tanggal) = '$thnFilter' ORDER BY _tanggal DESC, _id DESC");
 			while($listTDL = mysqli_fetch_assoc($dataTDL)){
 				$result[] = $listTDL;
 			}
@@ -309,7 +309,7 @@
 			$blnFilter = mysqli_real_escape_string($this->koneksi, $bln);
 			$thnFilter = mysqli_real_escape_string($this->koneksi, $thn);
 			
-			$dataTDL= mysqli_query($this->koneksi,"SELECT * FROM _tb_to_do_list WHERE _id_pekerja = '$idFilter' AND MONTH(_tanggal) = '$blnFilter' AND YEAR(_tanggal) = '$thnFilter' ORDER BY _tanggal DESC LIMIT 3");
+			$dataTDL= mysqli_query($this->koneksi,"SELECT * FROM _tb_to_do_list WHERE _id_pekerja = '$idFilter' AND MONTH(_tanggal) = '$blnFilter' AND YEAR(_tanggal) = '$thnFilter' ORDER BY _tanggal DESC, _id DESC LIMIT 3");
 			while($listTDL = mysqli_fetch_assoc($dataTDL)){
 				$result[] = $listTDL;
 			}
@@ -323,7 +323,7 @@
 			$thnFilter = mysqli_real_escape_string($this->koneksi, $thn);
 			$statusFilter = mysqli_real_escape_string($this->koneksi, $status);
 
-			$dataTDL= mysqli_query($this->koneksi,"SELECT * FROM _tb_to_do_list WHERE _id_pekerja = '$idFilter' AND YEAR(_tanggal) = '$thnFilter' AND _status = '$statusFilter' ORDER BY _tanggal DESC");
+			$dataTDL= mysqli_query($this->koneksi,"SELECT * FROM _tb_to_do_list WHERE _id_pekerja = '$idFilter' AND YEAR(_tanggal) = '$thnFilter' AND _status = '$statusFilter' ORDER BY _tanggal DESC, _id DESC");
 			while($listTDL = mysqli_fetch_assoc($dataTDL)){
 				$result[] = $listTDL;
 			}
