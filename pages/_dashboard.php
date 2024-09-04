@@ -149,6 +149,12 @@
                     
                     break;
 
+                case "detail-assignment-status":
+
+                    include "_detail_assignment_by_status.php";
+                        
+                    break;
+
 
 
 
@@ -230,9 +236,9 @@
                                 <span class="span-ket" style="background-color:darkorange;"><a href="my-assignment-status-<?= "Pending"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Pending (<?= $getData->cekAssUserbyStatus("_id_user", $dataUser['_id_pekerja'], date('Y'), "Pending"); ?>)</a></span>
                       <?php }
                             else { ?>
-                                <span class="span-ket" style="background-color:dodgerblue;"><a href="my-assignment-status-<?= "Request"; ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Request (<?= $getData->cekAssUserbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Request"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:green;"><a href="my-assignment-status-<?= "Done"; ?>"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Done (<?= $getData->cekAssUserbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Done"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:darkorange;"><a href="my-assignment-status-<?= "Pending"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Pending (<?= $getData->cekAssUserbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Pending"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:dodgerblue;"><a href="detail-assignment-status-<?= "Request"; ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Request (<?= $getData->cekAssUserbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Request"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:green;"><a href="detail-assignment-status-<?= "Done"; ?>"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Done (<?= $getData->cekAssUserbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Done"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:darkorange;"><a href="detail-assignment-status-<?= "Pending"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Pending (<?= $getData->cekAssUserbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Pending"); ?>)</a></span>
                       <?php }
                         ?>
                 </div>

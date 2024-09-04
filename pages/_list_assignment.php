@@ -55,7 +55,7 @@
                     <th>Engineer</th>
                     <th style="text-align:center;">Status</th>
                     <th>Information</th>
-                    <th style="text-align:center;">Action</th>
+                    <th colspan="2" style="text-align:center;">Action</th>
                 </tr>
                 <?php
                     $no = 1;
@@ -87,7 +87,8 @@
                                 ?>
                             </td>
                             <td><?= $row['_ket']; ?></td>
-                            <td style="text-align:center;"><a href="detail-my-assignment-<?= $row['_id_tugas']; ?>" class="linkDetail"><i class="fa fa-info-circle" aria-hidden="true"></i></a></td>
+                            <td style="text-align:center;"><a href="detail-assignment-<?= $row['_id_tugas']; ?>" class="linkDetail"><i class="fa fa-info-circle" aria-hidden="true"></i></a></td>
+                            <td style="text-align:center;"><a href="javascript:void(0)" data-id="<?= $row['_id_tugas']; ?>" class="linkError konfirmDeleteAssignment"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
                         </tr>
               <?php }    
                 ?>
