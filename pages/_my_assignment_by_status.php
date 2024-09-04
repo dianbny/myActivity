@@ -13,7 +13,7 @@
 <label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;My Assignment</label><br><br>
 
     <?php
-        if($getData->cekAssUserbyStatus($dataUser['_id_pekerja'], date('Y'), $status) > 0){
+        if($getData->cekAssUserbyStatus("_id_user", $dataUser['_id_pekerja'], date('Y'), $status) > 0){
     ?>
         <span style="font-size:12px;">My Assignment Status : <?= $status; ?></span>
         <div class="table-layout">

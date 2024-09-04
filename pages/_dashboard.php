@@ -303,7 +303,7 @@
                 <div class="table-dashboard">
                     <?php
                         if($dataUserLogin['_level'] == "user"){
-                            if($getData->cekMyAssignment($dataUser['_id_pekerja'], date('m'), date('Y')) > 0){
+                            if($getData->cekMyAssignment("_id_user", $dataUser['_id_pekerja'], date('m'), date('Y')) > 0){
                                 foreach($getData->ListMyAssignmentLimit($dataUser['_id_pekerja'], date('m'), date('Y')) as $row){ 
                                     $namaUser = $getData->getDataPekerja($row['_id_pekerja']); 
                                     $color;

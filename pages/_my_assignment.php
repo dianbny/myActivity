@@ -41,7 +41,7 @@
         <input type="submit" name="search" value="Search">
     </form>
         <?php
-             if($getData->cekMyAssignment($dataUser['_id_pekerja'], $bulan, $tahun) > 0){
+             if($getData->cekMyAssignment("_id_user", $dataUser['_id_pekerja'], $bulan, $tahun) > 0){
         ?>
         <span style="font-size:12px;">My Assigment : <?= $bulan."/".$tahun; ?> | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:dodgerblue"></i>&nbsp; Request, <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Pending </span>
         <div class="table-layout">
@@ -60,7 +60,7 @@
                 </tr>
                 <?php
                     $no = 1;
-                    foreach($getData->ListMyAssignment($dataUser['_id_pekerja'], $bulan, $tahun) as $row){ ?>
+                    foreach($getData->ListMyAssignment("_id_user", $dataUser['_id_pekerja'], $bulan, $tahun) as $row){ ?>
                         <tr>
                             <td><?= $no++."."; ?></td>
                             <td><?= $row['_id_tugas']; ?></td>
