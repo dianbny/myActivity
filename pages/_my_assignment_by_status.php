@@ -32,7 +32,7 @@
                 </tr>
                 <?php
                     $no = 1;
-                    foreach($getData->ListAssUserbyStatus($dataUser['_id_pekerja'], date('Y'), $status) as $row){ ?>
+                    foreach($getData->ListAssUserbyStatus("_id_user", $dataUser['_id_pekerja'], date('Y'), $status) as $row){ ?>
                         <tr>
                             <td><?= $no++."."; ?></td>
                             <td><?= $row['_id_tugas']; ?></td>
