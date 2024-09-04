@@ -215,6 +215,117 @@
             }
         }
 
+        //Save Assignment
+        elseif($_GET['action'] == "save-assignment"){
+            $id = $_GET['id'];
+            if(isset($_POST['save'])){
+                if(!preg_match("/^[a-zA-Z0-9 .,()]*$/", $_POST['assignment'])){ ?>
+                    <script>
+                        setTimeout(function() { 
+                            swal({
+                                title: "Error !",
+                                text: "Assignment must not contain special characters !",
+                                type: "error",
+                                confirmButtonText: "OK"
+                                },
+                                    function(isConfirm){
+                                        if (isConfirm) {
+                                            window.location.href = "new-assignment";
+                                        }
+                            }); }, 500);
+                    </script>
+          <?php }
+                elseif(!preg_match("/^[0-9-\/]*$/", $_POST['date'])){ ?>
+                    <script>
+                        setTimeout(function() { 
+                            swal({
+                                title: "Error !",
+                                text: "Date must only contain numbers in date format !",
+                                type: "error",
+                                confirmButtonText: "OK"
+                                },
+                                    function(isConfirm){
+                                        if (isConfirm) {
+                                            window.location.href = "new-assignment";
+                                        }
+                            }); }, 500);
+                    </script>
+          <?php }
+                elseif(!preg_match("/^[A-Z0-9]*$/", $_POST['assignmentno'])){ ?>
+                    <script>
+                        setTimeout(function() { 
+                            swal({
+                                title: "Error !",
+                                text: "Assignment No. must not contain special characters !",
+                                type: "error",
+                                confirmButtonText: "OK"
+                                },
+                                    function(isConfirm){
+                                        if (isConfirm) {
+                                            window.location.href = "new-assignment";
+                                        }
+                            }); }, 500);
+                    </script>
+          <?php }
+                elseif(!preg_match("/^[A-Z0-9-]*$/", $_POST['engineer'])){ ?>
+                    <script>
+                        setTimeout(function() { 
+                            swal({
+                                title: "Error !",
+                                text: "Engineer must not contain special characters !",
+                                type: "error",
+                                confirmButtonText: "OK"
+                                },
+                                    function(isConfirm){
+                                        if (isConfirm) {
+                                            window.location.href = "new-assignment";
+                                        }
+                            }); }, 500);
+                    </script>
+          <?php }
+                
+                else {
+                    $noass = $_POST['assignmentno'];
+                    $tanggal = date('Y-m-d');
+                    $waktu = date('H:i:s');
+                    $tglAssignment = $_POST['date'];
+                    $tugas = trim($_POST['assignment']);
+                    $engineer = $_POST['engineer'];
+                    
+                    $saveData->saveAssignment($noass, $id, $tanggal, $waktu, $tglAssignment, ucwords($tugas), $engineer); 
+                    ?>
+
+                            <script>
+                                setTimeout(function() { 
+                                    swal({
+                                        title: "Information",
+                                        text: "Data has been updated",
+                                        type: "success",
+                                        confirmButtonText: "OK"
+                                        },
+                                        function(isConfirm){
+                                            if (isConfirm) {
+                                                window.location.href = "assignment";
+                                            }
+                                }); }, 500);
+                            </script>
+                    
+          <?php }
+            }
+            else { 
+                if(isset($_SESSION['status'])){ ?>
+                    <script>    
+                        window.location.href = "my-assignment";
+                    </script>
+            <?php }
+                else { ?>
+                    <script>    
+                        window.location.href = "logout";
+                    </script>
+          <?php }
+            }
+        }
+
         //Update My Assignment
         elseif($_GET['action'] == "update-my-assignment"){
             $id = $_GET['id'];

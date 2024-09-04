@@ -20,6 +20,8 @@ RewriteRule ^daily-activity-fungsi-status-([A-Za-z]+)$ pages/_dashboard.php?page
 
 RewriteRule ^my-assignment$ pages/_dashboard.php?page=my-assignment [L]
 RewriteRule ^assignment$ pages/_dashboard.php?page=assignment [L]
+RewriteRule ^new-assignment$ pages/_dashboard.php?page=new-assignment [L]
+RewriteRule ^save-assignment-([0-9]+)$ process/_save_data.php?action=save-assignment&id=$1 [L]
 RewriteRule ^detail-my-assignment-([0-9A-Z-]+)$ pages/_dashboard.php?page=detail-my-assignment&id=$1 [L]
 RewriteRule ^update-my-assignment-([0-9A-Z-]+)$ process/_save_data.php?action=update-my-assignment&id=$1 [L]
 RewriteRule ^my-assignment-status-([A-Za-z]+)$ pages/_dashboard.php?page=my-assignment-status&status=$1 [L]

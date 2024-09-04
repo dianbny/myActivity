@@ -131,6 +131,12 @@
                     
                     break;
 
+                case "new-assignment":
+
+                    include "_new_assignment.php";
+                        
+                    break;
+
                 case "detail-my-assignment":
 
                     include "_detail_my_assignment.php";

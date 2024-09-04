@@ -23,6 +23,19 @@
 			mysqli_query($this->koneksi,"UPDATE _tb_daily_activity_app SET _tanggal = '$tanggalFilter', _aktifitas = '$aktifitasFilter', _status = '$statusFilter' WHERE _id_aktifitas = '$idFilter' ");
 		}
 
+		//Save Assignment
+		function saveAssignment($noAss, $id, $tgl, $waktu, $tglAss, $tugas, $engineer){
+			$noAssFilter = mysqli_real_escape_string($this->koneksi, $noAss);
+			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
+			$tglFilter = mysqli_real_escape_string($this->koneksi, $tgl);
+			$waktuFilter = mysqli_real_escape_string($this->koneksi, $waktu);
+			$tglAssFilter = mysqli_real_escape_string($this->koneksi, $tglAss);
+			$tugasFilter = mysqli_real_escape_string($this->koneksi, $tugas);
+			$engineerFilter = mysqli_real_escape_string($this->koneksi, $engineer);
+			
+			mysqli_query($this->koneksi,"INSERT INTO _tb_assignment VALUES ('$noAssFilter','$idFilter','$tglFilter','$waktuFilter','$tglAssFilter','$tugasFilter','Request','$engineerFilter','-')");
+		}
+
 		//Update My Assignment
         function updateMyAssignment($id, $status, $info){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
