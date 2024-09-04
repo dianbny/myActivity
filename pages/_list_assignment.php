@@ -17,11 +17,32 @@
 ?>
 
 <label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;Assigment</label>
-
-    <?php
-        if($getData->cekMyAssignment("_id_pekerja", $dataUser['_id_pekerja'], $bulan, $tahun) > 0){
-    ?>
-        <span style="font-size:12px;">My Assignment Status : <?= $status; ?></span>
+    <form method="POST" action="my-assignment" class="form-table">
+        <select name="month" class="select" required>
+            <option value="" selected>- Select Month -</option>
+                <?php
+                    for($i = 0; $i <= 11; $i++){ 
+                        $bln = $i+1; 
+                        $namaBln = strftime('%B', strtotime($i.'month', strtotime($bln)));
+                        ?>
+                        <option value="<?= $bln; ?>"><?= $namaBln; ?></option>
+              <?php }
+                ?>
+        </select>
+        <select name="year" class="select" required>
+            <option value="" selected>- Select Year -</option>
+                <?php
+                    for($i = date('Y', strtotime('-2 Year', strtotime(date('Y')))); $i <= date('Y', strtotime('+5 Year', strtotime(date('Y')))); $i++){ ?>
+                        <option value="<?= $i; ?>"><?= $i; ?></option>
+              <?php }
+                ?>
+        </select>
+        <input type="submit" name="search" value="Search">
+    </form>
+        <?php
+             if($getData->cekMyAssignment("_id_pekerja", $dataUser['_id_pekerja'], $bulan, $tahun) > 0){
+        ?>
+        <span style="font-size:12px;">Assigment : <?= $bulan."/".$tahun; ?> | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:dodgerblue"></i>&nbsp; Request, <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Pending </span>
         <div class="table-layout">
             <table class="table-style">
                 <tr>
@@ -78,5 +99,5 @@
         <span style="color:red;font-size:14px;">Data Not Found !</span><br>
 <?php }
 ?>
-<a href="new-assignment" class="linkTransferPg"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp; New Assignment</a>
+<a href="new-assignment" class="linkTransferPg"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp; New</a>
 <a href="assignment" class="linkTransferPg"><i class="fa fa-refresh" aria-hidden="true"></i> &nbsp; Refresh</a>
