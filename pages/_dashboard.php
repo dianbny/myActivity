@@ -305,37 +305,35 @@
             </div>
 
             <div class="dashboard-bottom">
-                <span class="color6">My Assignment Report</span>
+                <span class="color6"><?= ($dataUserLogin['_level'] == "user") ? "My Assignment Report" : "Assignment Report"; ?></span>
                 <div class="table-dashboard">
                     <?php
-                        if($dataUserLogin['_level'] == "user"){
-                            if($getData->cekMyAssignment("_id_user", $dataUser['_id_pekerja'], date('m'), date('Y')) > 0){
-                                foreach($getData->ListMyAssignmentLimit($dataUser['_id_pekerja'], date('m'), date('Y')) as $row){ 
-                                    $namaUser = $getData->getDataPekerja($row['_id_pekerja']); 
-                                    $color;
-                                    if($row['_status'] == "Request"){
-                                        $color = "dodgerblue";
-                                    }
-                                    elseif($row['_status'] == "Done"){
-                                        $color = "green";
-                                    }
-                                    else{
-                                        $color = "darkorange";
-                                    }    
-                                    ?>
-                                    <div class="daily-activity">
-                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp; <?= strftime('%d %B %Y', strtotime($row['_tanggal_tugas']))." | From : ".$namaUser['_nama_pekerja']; ?>
-                                        <br><br>
-                                        <?= $row['_tugas']; ?>
-                                        <br><br>
-                                        Status : &nbsp;<i class="fa fa-circle" aria-hidden="true" style="color:<?= $color;?>"></i>&nbsp; <strong><?= $row['_status']; ?></strong>
-                                    </div>
-                          <?php }
-                            }
-                            else{ ?>
-                                <span style="color:red;">Data not found !</span><br>
+                        if($getData->cekMyAssignment(($dataUserLogin['_level'] == "user") ? "_id_user" : "_id_pekerja", $dataUser['_id_pekerja'], date('m'), date('Y')) > 0){
+                            foreach($getData->ListMyAssignmentLimit(($dataUserLogin['_level'] == "user") ? "_id_user" : "_id_pekerja", $dataUser['_id_pekerja'], date('m'), date('Y')) as $row){ 
+                                $namaUser = $getData->getDataPekerja(($dataUserLogin['_level'] == "user") ? $row['_id_pekerja'] : $row['_id_user']); 
+                                $color;
+                                if($row['_status'] == "Request"){
+                                    $color = "dodgerblue";
+                                }
+                                elseif($row['_status'] == "Done"){
+                                    $color = "green";
+                                }
+                                else{
+                                    $color = "darkorange";
+                                }    
+                                ?>
+                                <div class="daily-activity">
+                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp; <?= strftime('%d %B %Y', strtotime($row['_tanggal_tugas']))." | ".$namaUser['_nama_pekerja']; ?>
+                                    <br><br>
+                                    <?= $row['_tugas']; ?>
+                                    <br><br>
+                                    Status : &nbsp;<i class="fa fa-circle" aria-hidden="true" style="color:<?= $color;?>"></i>&nbsp; <strong><?= $row['_status']; ?></strong>
+                                </div>
                       <?php }
                         }
+                        else{ ?>
+                            <span style="color:red;">Data not found !</span><br>
+                  <?php }
                     ?>
                 </div>
                 &nbsp;&nbsp; <em><strong>Show 3 New Entry Data</strong></em>
