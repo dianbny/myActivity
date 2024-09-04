@@ -51,7 +51,7 @@
                     <th>Date</th>
                     <th>Activity</th>
                     <th style="text-align:center;">Status</th>
-                    <th>Technician Name</th>
+                    <th>Engineer</th>
                 </tr>
                 <?php
                     $no = 1;
