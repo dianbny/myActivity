@@ -69,8 +69,8 @@
                             <td><?= $row['_tugas']; ?></td>
                             <td>
                                 <?php
-                                    $requester = $getData->getDataPekerja($row['_id_user']);
-                                    echo $requester['_nama_pekerja'];
+                                    $engineer = $getData->getDataPekerja($row['_id_user']);
+                                    echo $engineer['_nama_pekerja'];
                                 ?>
                             </td>
                             <td style="text-align:center;">
