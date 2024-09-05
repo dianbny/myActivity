@@ -36,6 +36,18 @@
 			mysqli_query($this->koneksi,"INSERT INTO _tb_assignment VALUES ('$noAssFilter','$idFilter','$tglFilter','$waktuFilter','$tglAssFilter','$tugasFilter','Request','$engineerFilter','-')");
 		}
 
+		//Update Assignment
+		function updateAssignment($id, $tgl, $waktu, $tglAss, $tugas, $engineer){
+			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
+			$tglFilter = mysqli_real_escape_string($this->koneksi, $tgl);
+			$waktuFilter = mysqli_real_escape_string($this->koneksi, $waktu);
+			$tglAssFilter = mysqli_real_escape_string($this->koneksi, $tglAss);
+			$tugasFilter = mysqli_real_escape_string($this->koneksi, $tugas);
+			$engineerFilter = mysqli_real_escape_string($this->koneksi, $engineer);
+			
+			mysqli_query($this->koneksi,"UPDATE _tb_assignment SET _tanggal = '$tglFilter', _waktu = '$waktuFilter', _tanggal_tugas = '$tglAssFilter', _tugas = '$tugasFilter', _id_user = '$engineerFilter' WHERE _id_tugas = '$idFilter'");
+		}
+
 		//Update My Assignment
         function updateMyAssignment($id, $status, $info){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);

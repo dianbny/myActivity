@@ -149,6 +149,12 @@
                     
                     break;
 
+                case "detail-assignment":
+
+                    include "_edit_assignment.php";
+                            
+                    break;
+
                 case "detail-assignment-status":
 
                     include "_detail_assignment_by_status.php";
