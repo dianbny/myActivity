@@ -64,7 +64,7 @@
         <a href="<?= ($dataUserLogin['_level'] == "user") ? "daily-activity" : "daily-activity-fungsi";?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Daily Activity</a>
         <a href="<?= ($dataUserLogin['_level'] == "user") ? "my-assignment" : "assignment";?>"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp; <?= ($dataUserLogin['_level'] == "user") ? "My Assignment" : "Assignment";?></a>
         <a href="to-do-list"><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp; To-Do List</a>
-        <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; Overtime</a>
+        <a href="my-overtime"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; Overtime</a>
         <a href="change-password"><i class="fa fa-key" aria-hidden="true"></i>&nbsp; Password</a>
         <a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Logout</a>
         
@@ -161,16 +161,6 @@
                         
                     break;
 
-
-
-
-
-
-
-
-
-
-
                 case "to-do-list":
 
                     include "_to_do_list.php";
@@ -199,6 +189,12 @@
 
                     include "_change_password.php";
                                         
+                    break;
+
+                case "my-overtime":
+
+                    include "_my_overtime.php";
+                                            
                     break;
 
 

@@ -37,6 +37,8 @@ RewriteRule ^update-to-do-list-([0-9]+)$ process/_save_data.php?action=update-to
 RewriteRule ^delete-to-do-list-([0-9]+)$ process/_delete_data.php?action=delete-to-do-list&id=$1 [L]
 RewriteRule ^to-do-list-status-([A-Za-z]+)$ pages/_dashboard.php?page=to-do-list-status&status=$1 [L]
 
+RewriteRule ^my-overtime$ pages/_dashboard.php?page=my-overtime [L]
+
 RewriteRule ^change-password$ pages/_dashboard.php?page=change-password [L]
 RewriteRule ^save-new-password-([0-9A-Z-]+)$ process/_save_data.php?action=save-new-password&id=$1 [L]
 
