@@ -113,5 +113,29 @@ $(document).ready(function(){
         });
     });
 
+    //Konfirmasi Delete Assignment
+    $('.konfirmDeleteAssignment').click(function(){
+        var id = $(this).attr("data-id");
+        swal({
+            title: "Confirmation",
+            text: "Are you sure you want to delete ?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Delete",
+            cancelButtonText: "Cancel",
+            closeOnConfirm: false,
+            closeOnCancel: false
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    window.location.href = "delete-asignment-"+id;
+                }
+                else {
+                    window.location.href = "";
+                }
+        });
+    });
+
     
 });
