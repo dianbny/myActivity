@@ -30,6 +30,7 @@
 </head>
 <body>
     <?php
+        //Delete Daily Activity
         if($_GET['action'] == "delete-activity"){
             $id = $_GET['id'];
             
@@ -51,6 +52,7 @@
                 </script>
   <?php }
 
+        //Delete To Do List
         elseif($_GET['action'] == "delete-to-do-list"){
             $id = $_GET['id'];
             
@@ -67,6 +69,28 @@
                             function(isConfirm){
                                 if (isConfirm) {
                                     window.location.href="to-do-list";
+                                }
+                    }); }, 500);
+                </script>
+  <?php }
+
+        //Delete Assignment
+        elseif($_GET['action'] == "delete-assignment"){
+            $id = $_GET['id'];
+            
+            $deleteData->hapusAssignment($id); ?>
+
+                <script>
+                    setTimeout(function() { 
+                        swal({
+                                title: "Information",
+                                text: "Data deleted successfully",
+                                type: "success",
+                                confirmButtonText: "OK"
+                            },
+                            function(isConfirm){
+                                if (isConfirm) {
+                                    window.location.href="assignment";
                                 }
                     }); }, 500);
                 </script>

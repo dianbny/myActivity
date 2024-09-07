@@ -17,6 +17,13 @@
 			mysqli_query($this->koneksi,"DELETE FROM _tb_to_do_list WHERE _id = '$idFilter'"); 
         }
 
+        //Delete Assignment
+        function hapusAssignment($id){
+            $idFilter = mysqli_real_escape_string($this->koneksi, $id);
+            
+			mysqli_query($this->koneksi,"DELETE FROM _tb_assignment WHERE _id_tugas = '$idFilter'"); 
+        }
+
         
 
     }

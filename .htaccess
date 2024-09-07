@@ -28,6 +28,7 @@ RewriteRule ^detail-assignment-status-([A-Za-z]+)$ pages/_dashboard.php?page=det
 RewriteRule ^update-my-assignment-([0-9A-Z-]+)$ process/_save_data.php?action=update-my-assignment&id=$1 [L]
 RewriteRule ^update-assignment-([0-9A-Z-]+)$ process/_save_data.php?action=update-assignment&id=$1 [L]
 RewriteRule ^my-assignment-status-([A-Za-z]+)$ pages/_dashboard.php?page=my-assignment-status&status=$1 [L]
+RewriteRule ^delete-assignment-([0-9A-Z-]+)$ process/_delete_data.php?action=delete-assignment&id=$1 [L]
 
 RewriteRule ^to-do-list$ pages/_dashboard.php?page=to-do-list [L]
 RewriteRule ^new-to-do-list$ pages/_dashboard.php?page=new-to-do-list [L]
