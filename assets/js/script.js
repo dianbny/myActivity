@@ -129,7 +129,7 @@ $(document).ready(function(){
             },
             function(isConfirm){
                 if (isConfirm) {
-                    window.location.href = "delete-asignment-"+id;
+                    window.location.href = "delete-assignment-"+id;
                 }
                 else {
                     window.location.href = "";
