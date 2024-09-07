@@ -16,7 +16,7 @@
     }
 ?>
 
-<label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;Assigment</label>
+<label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;Assignment</label>
     <form method="POST" action="my-assignment" class="form-table">
         <select name="month" class="select" required>
             <option value="" selected>- Select Month -</option>
@@ -42,16 +42,16 @@
         <?php
              if($getData->cekMyAssignment("_id_pekerja", $dataUser['_id_pekerja'], $bulan, $tahun) > 0){
         ?>
-        <span style="font-size:12px;">Assigment : <?= $bulan."/".$tahun; ?> | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:dodgerblue"></i>&nbsp; Request, <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Pending </span>
+        <span style="font-size:12px;">Assignment : <?= $bulan."/".$tahun; ?> | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:dodgerblue"></i>&nbsp; Request, <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Pending </span>
         <div class="table-layout">
             <table class="table-style">
                 <tr>
                     <th>No.</th>
-                    <th>Assigment No.</th>
+                    <th>Assignment No.</th>
                     <th>Request Date</th>
                     <th>Request Time</th>
-                    <th>Assigment Date</th>
-                    <th>Assigment</th>
+                    <th>Assignment Date</th>
+                    <th>Assignment</th>
                     <th>Engineer</th>
                     <th style="text-align:center;">Status</th>
                     <th>Information</th>

@@ -9,15 +9,15 @@
     }
 ?>
 <div class="container-form">
-    <h5><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp; Form Update My Assigment</h5><br>
+    <h5><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp; Form Update My Assignment</h5><br>
     <form method="POST" action="update-my-assignment-<?= $id; ?>" class="form-input">
-        <label for="assigment_no">Assigment No. &nbsp;<span style="color:red;font-size:15px;"></span></label><br>
+        <label for="assigment_no">Assignment No. &nbsp;<span style="color:red;font-size:15px;"></span></label><br>
         <input type="text" value="<?= $id; ?>" required readonly><br>
 
         <label for="date">Date &nbsp;<span style="color:red;font-size:15px;"></span></label><br>
         <input type="date" value="<?= $dataAssignment['_tanggal_tugas']; ?>" required readonly><br>
 
-        <label for="assignment">Assigment &nbsp;<span style="color:red;font-size:15px;"></span></label><br>
+        <label for="assignment">Assignment &nbsp;<span style="color:red;font-size:15px;"></span></label><br>
         <textarea name="assignment" class="textarea" required readonly><?= $dataAssignment['_tugas']; ?></textarea>
 
         <label for="status">Status &nbsp;<span style="color:red;font-size:15px;"></span></label><br>

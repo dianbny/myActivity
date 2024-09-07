@@ -20,11 +20,11 @@
             <table class="table-style">
                 <tr>
                 <th>No.</th>
-                    <th>Assigment No.</th>
+                    <th>Assignment No.</th>
                     <th>Request Date</th>
                     <th>Request Time</th>
-                    <th>Assigment Date</th>
-                    <th>Assigment</th>
+                    <th>Assignment Date</th>
+                    <th>Assignment</th>
                     <th>Engineer</th>
                     <th style="text-align:center;">Status</th>
                     <th>Information</th>
