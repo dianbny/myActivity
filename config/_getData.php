@@ -353,6 +353,18 @@
 			return $result;
 		}
 
+		//Ambil Data Overtime
+        function cekOTbyStatus($tabelid, $id, $thn, $status){
+			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
+			$thnFilter = mysqli_real_escape_string($this->koneksi, $thn);
+			$statusFilter = mysqli_real_escape_string($this->koneksi, $status);
+			
+			$dataOT= mysqli_query($this->koneksi,"SELECT * FROM _tb_overtime WHERE $tabelid = '$idFilter' AND YEAR(_tgl_overtime) = '$thnFilter' AND _status = '$statusFilter'");
+			$cekJumlah = mysqli_num_rows($dataOT);
+			
+			return $cekJumlah;
+		}
+
 		
 
 
