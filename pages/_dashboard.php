@@ -261,9 +261,18 @@
                 </div>
                 <div class="title">
                     <strong>Overtime</strong>
-                    <span class="span-ket" style="background-color:dodgerblue;"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Requested</span>
-                    <span class="span-ket" style="background-color:green;"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Accepted</span>
-                    <span class="span-ket" style="background-color:maroon;"><i class="fa fa-times" aria-hidden="true"></i>&nbsp; Rejected</span>
+                        <?php
+                            if($dataUserLogin['_level'] == "user"){ ?>
+                                <span class="span-ket" style="background-color:dodgerblue;"><a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Requested (<?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Requested"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:green;"><a href=""><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Accepted (<?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Accepted"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:maroon;"><a href=""><i class="fa fa-times" aria-hidden="true"></i>&nbsp; Rejected (<?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Rejected"); ?>)</a></span>
+                      <?php }
+                            else { ?>
+                                <span class="span-ket" style="background-color:dodgerblue;"><a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Requested (<?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Requested"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:green;"><a href=""><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Accepted (<?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Accepted"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:maroon;"><a href=""><i class="fa fa-times" aria-hidden="true"></i>&nbsp; Rejected (<?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Rejected"); ?>)</a></span>
+                      <?php }
+                        ?>
                 </div>
             </div>
             
