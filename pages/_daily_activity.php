@@ -3,52 +3,29 @@
         header('location:logout');
     }
 
-    $bulan;
-    $tahun;
+    $start;
+    $end;
 
     if(isset($_POST['search'])){
-        $bulan = $_POST['month'];
-        $tahun = $_POST['year'];
+        $start = $_POST['start'];
+        $end = $_POST['end'];
     }
     else {
-        $bulan = date('m');
-        $tahun = date('Y');
+        $start = date('Y-m-d');
+        $end = date('Y-m-d');
     }
 ?>
 
 <label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;Daily Activity</label>
 
     <form method="POST" action="daily-activity" class="form-table">
-        <select name="organize" class="select" required>
-            <option value="" selected>- Select Organize -</option>
-            <option value="GA">General Activity</option>
-            <option value="EA">Engineer Activity</option>
-        </select>
-        <select name="month" class="select" required>
-            <option value="" selected>- Select Month -</option>
-                <?php
-                    for($i = 0; $i <= 11; $i++){ 
-                        $bln = $i+1; 
-                        $namaBln = strftime('%B', strtotime($i.'month', strtotime($bln)));
-                        ?>
-                        <option value="<?= $bln; ?>"><?= $namaBln; ?></option>
-              <?php }
-                ?>
-        </select>
-        <select name="year" class="select" required>
-            <option value="" selected>- Select Year -</option>
-                <?php
-                    for($i = date('Y', strtotime('-2 Year', strtotime(date('Y')))); $i <= date('Y', strtotime('+5 Year', strtotime(date('Y')))); $i++){ ?>
-                        <option value="<?= $i; ?>"><?= $i; ?></option>
-              <?php }
-                ?>
-        </select>
+        From : <input type="date" name="start" value="<?= $start; ?>"> &nbsp; To : <input type="date" name="end" value="<?= $end; ?>" min="<?= date('Y-m-d'); ?>">
         <input type="submit" name="search" value="Search">
     </form>
         <?php
-             if($getData->cekDailyActivityUser($dataUser['_id_pekerja'], $bulan, $tahun) > 0){
+             if($getData->cekDAFromTo($dataUser['_id_pekerja'], $start, $end) > 0){
         ?>
-        <span style="font-size:12px;">Daily Activity : <?= $bulan."/".$tahun; ?> | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Pending </span>
+        <span style="font-size:12px;">Daily Activity | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Pending </span>
         <div class="table-layout">
             <table class="table-style">
                 <tr>
@@ -60,7 +37,7 @@
                 </tr>
                 <?php
                     $no = 1;
-                    foreach($getData->ListDailyActivityUser($dataUser['_id_pekerja'], $bulan, $tahun) as $row){ ?>
+                    foreach($getData->ListDAFromTo($dataUser['_id_pekerja'], $start, $end) as $row){ ?>
                         <tr>
                             <td><?= $no++."."; ?></td>
                             <td><?= strftime('%d %B %Y', strtotime($row['_tanggal'])); ?></td>
