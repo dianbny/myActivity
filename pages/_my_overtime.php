@@ -3,47 +3,29 @@
         header('location:logout');
     }
 
-    $bulan;
-    $tahun;
+    $start;
+    $end;
 
     if(isset($_POST['search'])){
-        $bulan = $_POST['month'];
-        $tahun = $_POST['year'];
+        $start = $_POST['start'];
+        $end = $_POST['end'];
     }
     else {
-        $bulan = date('m');
-        $tahun = date('Y');
+        $start = date('Y-m-d');
+        $end = date('Y-m-d');
     }
 ?>
 
 <label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;Overtime</label>
 
     <form method="POST" action="my-overtime" class="form-table">
-        <select name="month" class="select" required>
-            <option value="" selected>- Select Month -</option>
-                <?php
-                    for($i = 0; $i <= 11; $i++){ 
-                        $bln = $i+1; 
-                        $namaBln = strftime('%B', strtotime($i.'month', strtotime($bln)));
-                        ?>
-                        <option value="<?= $bln; ?>"><?= $namaBln; ?></option>
-              <?php }
-                ?>
-        </select>
-        <select name="year" class="select" required>
-            <option value="" selected>- Select Year -</option>
-                <?php
-                    for($i = date('Y', strtotime('-2 Year', strtotime(date('Y')))); $i <= date('Y', strtotime('+5 Year', strtotime(date('Y')))); $i++){ ?>
-                        <option value="<?= $i; ?>"><?= $i; ?></option>
-              <?php }
-                ?>
-        </select>
+        From : <input type="date" name="start" value="<?= date('Y-m-d'); ?>"> &nbsp; To : <input type="date" name="end" value="<?= date('Y-m-d'); ?>">
         <input type="submit" name="search" value="Search">
     </form>
         <?php
-             if($getData->cekMyAssignment("_id_user", $dataUser['_id_pekerja'], $bulan, $tahun) > 0){
+             if($getData->cekMyOvertime("_id_pekerja", $dataUser['_id_pekerja'], $start, $end) > 0){
         ?>
-        <span style="font-size:12px;">My Overtime : <?= $bulan."/".$tahun; ?> | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:dodgerblue"></i>&nbsp; Requested, <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Pending </span>
+        <span style="font-size:12px;">My Overtime : <?= $bulan."/".$tahun; ?> | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:dodgerblue"></i>&nbsp; Request, <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Pending </span>
         <div class="table-layout">
             <table class="table-style">
                 <tr>
@@ -100,7 +82,7 @@
 <?php }
       else { ?>
         <br>
-        <span style="color:red;font-size:14px;">Data Not Found !</span><br>
+        <span style="color:red;font-size:14px;">Data Overtime Not Found !</span><br>
 <?php }
 ?>
 
