@@ -59,6 +59,18 @@
 			return $cekJumlah;
 		}
 
+		//Cek Daily Activity 
+		function cekDAFromTo($id, $start, $end){
+			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
+			$startFilter = mysqli_real_escape_string($this->koneksi, $start);
+			$endFilter = mysqli_real_escape_string($this->koneksi, $end);
+
+			$dataActivity = mysqli_query($this->koneksi,"SELECT * FROM _tb_daily_activity_app WHERE _id_pekerja = '$idFilter' AND _tanggal BETWEEN '$startFilter' AND '$endFilter'");
+			$cekJumlah = mysqli_num_rows($dataActivity);
+			
+			return $cekJumlah;
+		}
+
 		//Cek Daily Activity by Status
 		function cekDAUserbyStatus($id, $thn, $status){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
@@ -102,6 +114,20 @@
 			$thnFilter = mysqli_real_escape_string($this->koneksi, $thn);
 			
 			$dataActivity = mysqli_query($this->koneksi,"SELECT * FROM _tb_daily_activity_app WHERE _id_pekerja = '$idFilter' AND MONTH(_tanggal) = '$blnFilter' AND YEAR(_tanggal) = '$thnFilter' ORDER BY _tanggal DESC, _id_aktifitas DESC");
+			while($listActivity = mysqli_fetch_assoc($dataActivity)){
+				$result[] = $listActivity;
+			}
+
+			return $result;
+		}
+
+		//List Daily Activity
+		function ListDAFromTo($id, $start, $end){
+			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
+			$startFilter = mysqli_real_escape_string($this->koneksi, $start);
+			$endFilter = mysqli_real_escape_string($this->koneksi, $end);
+			
+			$dataActivity = mysqli_query($this->koneksi,"SELECT * FROM _tb_daily_activity_app WHERE _id_pekerja = '$idFilter' AND _tanggal BETWEEN '$startFilter' AND '$endFilter' ORDER BY _tanggal ASC, _id_aktifitas DESC");
 			while($listActivity = mysqli_fetch_assoc($dataActivity)){
 				$result[] = $listActivity;
 			}
@@ -361,6 +387,18 @@
 			
 			$dataOT= mysqli_query($this->koneksi,"SELECT * FROM _tb_overtime WHERE $tabelid = '$idFilter' AND YEAR(_tgl_overtime) = '$thnFilter' AND _status = '$statusFilter'");
 			$cekJumlah = mysqli_num_rows($dataOT);
+			
+			return $cekJumlah;
+		}
+
+		//Cek My overtime
+		function cekMyOvertime($tabelid, $id, $star, $end){
+			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
+			$startFilter = mysqli_real_escape_string($this->koneksi, $start);
+			$endFilter = mysqli_real_escape_string($this->koneksi, $end);
+			
+			$dataOvertime = mysqli_query($this->koneksi,"SELECT * FROM _tb_overtime WHERE $tabelid = '$idFilter' AND _tgl_overtime BETWEEN '$startFilter' AND '$endFilter'");
+			$cekJumlah = mysqli_num_rows($dataOvertime);
 			
 			return $cekJumlah;
 		}
