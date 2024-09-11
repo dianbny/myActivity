@@ -36,7 +36,7 @@
         //Simpan Activity 
         if($_GET['action'] == "save-activity"){
             if(isset($_POST['save'])){
-                if(!preg_match("/^[a-zA-Z0-9 .,()]*$/", $_POST['activity'])){ ?>
+                if(!preg_match("/^[a-zA-Z0-9 .,()&-]*$/", $_POST['activity'])){ ?>
                     <script>
                         setTimeout(function() { 
                             swal({
@@ -84,14 +84,48 @@
                             }); }, 500);
                     </script>
           <?php }
+                elseif(!preg_match("/^[A-Za-z ]*$/", $_POST['type'])){ ?>
+                    <script>
+                        setTimeout(function() { 
+                            swal({
+                                title: "Error !",
+                                text: "Type of activity must not contain special characters !",
+                                type: "error",
+                                confirmButtonText: "OK"
+                                },
+                                    function(isConfirm){
+                                        if (isConfirm) {
+                                            window.location.href = "new-activity";
+                                        }
+                            }); }, 500);
+                    </script>
+          <?php }
+                elseif(!preg_match("/^[a-zA-Z0-9 .,()&-]*$/", $_POST['info'])){ ?>
+                    <script>
+                        setTimeout(function() { 
+                            swal({
+                                title: "Error !",
+                                text: "Additional Information must not contain special characters !",
+                                type: "error",
+                                confirmButtonText: "OK"
+                                },
+                                    function(isConfirm){
+                                        if (isConfirm) {
+                                            window.location.href = "new-activity";
+                                        }
+                            }); }, 500);
+                    </script>
+          <?php }
                 
                 else {
                     $id = $_GET['id'];
                     $tanggal = $_POST['date'];
+                    $tipe = $_POST['type'];
                     $aktifitas = trim($_POST['activity']);
                     $status = $_POST['status'];
+                    $info = trim($_POST['info']);
 
-                    $saveData->simpanAktifitas($id, $tanggal, ucwords($aktifitas), $status); ?>
+                    $saveData->simpanAktifitas($id, $tanggal, $tipe, ucwords($aktifitas), $status, ucwords($info)); ?>
 
                             <script>
                                 setTimeout(function() { 

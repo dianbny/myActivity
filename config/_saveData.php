@@ -4,13 +4,15 @@
     class _saveData extends _dataBase {
 
         //Simpan Data Aktifitas
-        function simpanAktifitas($id, $tanggal, $aktifitas, $status){
+        function simpanAktifitas($id, $tanggal, $tipe, $aktifitas, $status, $info){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
 			$tanggalFilter = mysqli_real_escape_string($this->koneksi, $tanggal);
+			$tipeFilter = mysqli_real_escape_string($this->koneksi, $tipe);
 			$aktifitasFilter = mysqli_real_escape_string($this->koneksi, $aktifitas);
 			$statusFilter = mysqli_real_escape_string($this->koneksi, $status);
+			$infoFilter = mysqli_real_escape_string($this->koneksi, $info);
 			
-			mysqli_query($this->koneksi,"INSERT INTO _tb_daily_activity_app (_id_pekerja,_tanggal,_aktifitas,_status) VALUES ('$idFilter','$tanggalFilter','$aktifitasFilter','$statusFilter')");
+			mysqli_query($this->koneksi,"INSERT INTO _tb_daily_activity_app (_id_pekerja,_tanggal,_tipe_aktifitas,_aktifitas,_status,_keterangan) VALUES ('$idFilter','$tanggalFilter','$tipeFilter','$aktifitasFilter','$statusFilter','$infoFilter')");
 		}
 
 		//Update Data Aktifitas

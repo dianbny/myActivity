@@ -9,15 +9,15 @@
     
     <form method="POST" action="save-activity-<?= $dataUser['_id_pekerja']; ?>" class="form-input">
         
-        <label for="organize">Organize &nbsp;<span style="color:red;font-size:15px;">*</span></label><br>
-        <select name="organize" class="select" required>
-            <option value="" selected>- Select Organize -</option>
-            <option value="GA">General Activity</option>
-            <option value="EA">Engineer Activity</option>
-        </select>
-
         <label for="date">Date &nbsp;<span style="color:red;font-size:15px;">*</span></label><br>
         <input type="date" name="date" value="<?= date('Y-m-d'); ?>" required><br>
+
+        <label for="type">Type of Activity &nbsp;<span style="color:red;font-size:15px;">*</span></label><br>
+        <select name="type" class="select" required>
+            <option value="" selected>- Select Type -</option>
+            <option value="General Activity">General Activity</option>
+            <option value="Engineer Activity">Engineer Activity</option>
+        </select>
 
         <label for="activity">Activity &nbsp;<span style="color:red;font-size:15px;">*</span></label><br>
         <textarea name="activity" class="textarea" placeholder="Add New Activity" required></textarea>
@@ -28,6 +28,9 @@
             <option value="Done">Done</option>
             <option value="Pending">Pending</option>
         </select>
+
+        <label for="info">Additional Information &nbsp;<span style="color:red;font-size:15px;">*</span></label><br>
+        <textarea name="info" class="textarea" placeholder="Additional Information" required></textarea>
 
         <button type="button" class="btnForm" onclick="window.location.href = 'daily-activity'">Back</button>
         <input type="submit" name="save" value="Save" class="btnForm">
