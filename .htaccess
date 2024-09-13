@@ -15,6 +15,8 @@ RewriteRule ^save-activity-([0-9A-Z-]+)$ process/_save_data.php?action=save-acti
 RewriteRule ^detail-activity-([0-9]+)$ pages/_dashboard.php?page=detail-activity&id=$1 [L]
 RewriteRule ^update-activity-([0-9]+)$ process/_save_data.php?action=update-activity&id=$1 [L]
 RewriteRule ^delete-activity-([0-9]+)$ process/_delete_data.php?action=delete-activity&id=$1 [L]
+RewriteRule ^follow-up-activity-([0-9]+)$ pages/_dashboard.php?page=follow-up-activity&id=$1 [L]
+RewriteRule ^save-follow-up-activity-([0-9]+)$ process/_save_data.php?action=save-follow-up-activity&id=$1 [L]
 RewriteRule ^daily-activity-status-([A-Za-z]+)$ pages/_dashboard.php?page=daily-activity-status&status=$1 [L]
 RewriteRule ^daily-activity-fungsi-status-([A-Za-z]+)$ pages/_dashboard.php?page=daily-activity-fungsi-status&status=$1 [L]
 
