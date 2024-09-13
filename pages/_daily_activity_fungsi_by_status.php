@@ -21,8 +21,11 @@
                 <tr>
                     <th>No.</th>
                     <th>Date</th>
+                    <th>Type of Activity</th>
                     <th>Activity</th>
                     <th style="text-align:center;">Status</th>
+                    <th style="text-align:center;">Follow Up</th>
+                    <th>Additional Information</th>
                     <th>Technician Name</th>
                 </tr>
                 <?php
@@ -31,6 +34,7 @@
                         <tr>
                             <td><?= $no++."."; ?></td>
                             <td><?= strftime('%d %B %Y', strtotime($row['_tanggal'])); ?></td>
+                            <td><?= $row['_tipe_aktifitas']; ?></td>
                             <td><?= $row['_aktifitas']; ?></td>
                             <td style="text-align:center;">
                                 <?php
@@ -39,9 +43,28 @@
                               <?php }
                                     else{ ?>
                                         <span style="color:darkorange;font-size:14px;"><i class="fa fa-circle" aria-hidden="true"></i></span>
-                            <?php }
+                              <?php }
+                                    ?>
+                            </td>
+                            <td style="text-align:center;">
+                                <?php
+                                    if($row['_status'] == "Pending"){ 
+                                        if($getData->cekFollowUp($row['_id_aktifitas'], $row['_id_pekerja']) < 1){ ?>
+                                                <a href="follow-up-activity-<?= $row['_id_aktifitas']; ?>" class="linkDetail"><i class="fa fa-cogs" aria-hidden="true"></i></a>
+                                  <?php }
+                                        else {
+                                            $ketFU = $getData->getDataFollowUp($row['_id_aktifitas'], $row['_id_pekerja']);
+                                            ?>
+
+                                            <?= strftime('%d %B %Y', strtotime($ketFU['_tanggal'])) ?> | <?= $ketFU['_status']; ?>
+                                  <?php }  
+                                    }
+                                    else { 
+                                        echo "-";
+                                    }
                                 ?>
                             </td>
+                            <td><?= $row['_keterangan']; ?></td>
                             <td><?= $row['_nama_pekerja']; ?></td>
 
                         </tr>
