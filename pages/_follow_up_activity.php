@@ -39,7 +39,7 @@
         </select>
 
         <label for="info">Additional Information &nbsp;<span style="color:red;font-size:15px;">*</span></label><br>
-        <textarea name="info" class="textarea" placeholder="Additional Information" required><?= $dataActivity['_keterangan']; ?></textarea>
+        <textarea name="info" class="textarea" placeholder="Additional Information" required></textarea>
 
         <button type="button" class="btnForm" onclick="window.location.href = 'daily-activity'">Back</button>
         <input type="submit" name="save" value="Save" class="btnForm">
