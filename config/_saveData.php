@@ -86,6 +86,16 @@
 			
 			mysqli_query($this->koneksi,"UPDATE _tb_user_app_activity SET _password = '$passwordFilter' WHERE _id_user = '$idFilter'");
 		}
+
+		//Simpan Follow Up
+        function simpanFollowUp($idAkt, $idPek, $tgl, $status){
+			$idAktFilter = mysqli_real_escape_string($this->koneksi, $idAkt);
+			$idPekFilter = mysqli_real_escape_string($this->koneksi, $idPek);
+			$tglFilter = mysqli_real_escape_string($this->koneksi, $tgl);
+			$statusFilter = mysqli_real_escape_string($this->koneksi, $status);
+			
+			mysqli_query($this->koneksi,"INSERT INTO _tb_follow_up VALUES ('$idAktFilter','$idPekFilter','$tglFilter','$statusFilter')");
+		}
 		
 
 

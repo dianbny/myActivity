@@ -17,6 +17,7 @@
     $username = $_SESSION['username'];
 
     $dataUserLogin = $getData->getDataUserLogin($username);
+    $dataUser = $getData->getDataPekerja($dataUserLogin['_id_user']);
 
 ?>
 <!DOCTYPE html>
@@ -223,6 +224,133 @@
                                     swal({
                                         title: "Information",
                                         text: "Data has been updated",
+                                        type: "success",
+                                        confirmButtonText: "OK"
+                                        },
+                                        function(isConfirm){
+                                            if (isConfirm) {
+                                                window.location.href = "daily-activity";
+                                            }
+                                }); }, 500);
+                            </script>
+                    
+          <?php }
+            }
+            else { 
+                if(isset($_SESSION['status'])){ ?>
+                    <script>    
+                        window.location.href = "daily-activity";
+                    </script>
+            <?php }
+                else { ?>
+                    <script>    
+                        window.location.href = "logout";
+                    </script>
+          <?php }
+            }
+        }
+
+        //Simpan Follow Up Activity 
+        elseif($_GET['action'] == "save-follow-up-activity"){
+            if(isset($_POST['save'])){
+                if(!preg_match("/^[a-zA-Z0-9 .,()&-]*$/", $_POST['activity'])){ ?>
+                    <script>
+                        setTimeout(function() { 
+                            swal({
+                                title: "Error !",
+                                text: "Activity must not contain special characters !",
+                                type: "error",
+                                confirmButtonText: "OK"
+                                },
+                                    function(isConfirm){
+                                        if (isConfirm) {
+                                            window.location.href = "new-activity";
+                                        }
+                            }); }, 500);
+                    </script>
+          <?php }
+                elseif(!preg_match("/^[0-9-\/]*$/", $_POST['date'])){ ?>
+                    <script>
+                        setTimeout(function() { 
+                            swal({
+                                title: "Error !",
+                                text: "Date must only contain numbers in date format !",
+                                type: "error",
+                                confirmButtonText: "OK"
+                                },
+                                    function(isConfirm){
+                                        if (isConfirm) {
+                                            window.location.href = "new-activity";
+                                        }
+                            }); }, 500);
+                    </script>
+          <?php }
+                elseif(!preg_match("/^[A-Za-z]*$/", $_POST['status'])){ ?>
+                    <script>
+                        setTimeout(function() { 
+                            swal({
+                                title: "Error !",
+                                text: "Status must not contain special characters !",
+                                type: "error",
+                                confirmButtonText: "OK"
+                                },
+                                    function(isConfirm){
+                                        if (isConfirm) {
+                                            window.location.href = "new-activity";
+                                        }
+                            }); }, 500);
+                    </script>
+          <?php }
+                elseif(!preg_match("/^[A-Za-z ]*$/", $_POST['type'])){ ?>
+                    <script>
+                        setTimeout(function() { 
+                            swal({
+                                title: "Error !",
+                                text: "Type of activity must not contain special characters !",
+                                type: "error",
+                                confirmButtonText: "OK"
+                                },
+                                    function(isConfirm){
+                                        if (isConfirm) {
+                                            window.location.href = "new-activity";
+                                        }
+                            }); }, 500);
+                    </script>
+          <?php }
+                elseif(!preg_match("/^[a-zA-Z0-9 .,()&-]*$/", $_POST['info'])){ ?>
+                    <script>
+                        setTimeout(function() { 
+                            swal({
+                                title: "Error !",
+                                text: "Additional Information must not contain special characters !",
+                                type: "error",
+                                confirmButtonText: "OK"
+                                },
+                                    function(isConfirm){
+                                        if (isConfirm) {
+                                            window.location.href = "new-activity";
+                                        }
+                            }); }, 500);
+                    </script>
+          <?php }
+                
+                else {
+                    $id = $_GET['id'];
+                    $idPekerja = $dataUser['_id_pekerja'];
+                    $tanggal = $_POST['date'];
+                    $tipe = $_POST['type'];
+                    $aktifitas = trim($_POST['activity']);
+                    $status = $_POST['status'];
+                    $info = trim($_POST['info']);
+
+                    $saveData->simpanFollowUp($id, $idPekerja, $tanggal, $status);
+                    $saveData->simpanAktifitas($idPekerja, $tanggal, $tipe, ucwords($aktifitas), $status, ucwords($info)); ?>
+
+                            <script>
+                                setTimeout(function() { 
+                                    swal({
+                                        title: "Information",
+                                        text: "Data has been saved",
                                         type: "success",
                                         confirmButtonText: "OK"
                                         },
@@ -515,7 +643,7 @@
                     $dataAssignment = $getData->getMyAssignmentbyID($id);
 
                     $saveData->updateMyAssignment($id, $status, ucwords($info)); 
-                    $saveData->simpanAktifitas($dataAssignment['_id_user'], $tanggal, ucwords($tugas), $status)
+                    $saveData->simpanAktifitas($dataAssignment['_id_user'], $tanggal, 'Engineer Activity', ucwords($tugas), $status, ucwords($info))
                     ?>
 
                             <script>
