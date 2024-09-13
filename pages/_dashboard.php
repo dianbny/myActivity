@@ -101,6 +101,12 @@
             
                     break;
 
+                case "follow-up-activity":
+
+                    include "_follow_up_activity.php";
+                
+                    break;
+
                 case "detail-activity-fungsi":
 
                     include "_detail_activity_fungsi.php";
