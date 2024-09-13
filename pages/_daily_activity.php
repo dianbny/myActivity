@@ -5,21 +5,40 @@
 
     $start;
     $end;
+    $cekDailyActivity;
+    $dataDailyActivity;
 
     if(isset($_POST['search'])){
         $start = $_POST['start'];
         $end = $_POST['end'];
+        $cekDailyActivity = $getData->cekDAFromToTipe($dataUser['_id_pekerja'], $start, $end, $_POST['type']);
+        
+        if($cekDailyActivity > 0){
+            $dataDailyActivity = $getData->ListDAFromToTipe($dataUser['_id_pekerja'], $start, $end, $_POST['type']);
+        }
+        
     }
     else {
         $start = date('Y-m-d');
         $end = date('Y-m-d');
+        $cekDailyActivity = $getData->cekDAFromTo($dataUser['_id_pekerja'], $start, $end);
+        
+        if($cekDailyActivity > 0){
+            $dataDailyActivity = $getData->ListDAFromTo($dataUser['_id_pekerja'], $start, $end);
+        }
+        
     }
 ?>
 
 <label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;Daily Activity</label>
 
     <form method="POST" action="daily-activity" class="form-table">
-        From : <input type="date" name="start" value="<?= $start; ?>"> &nbsp; To : <input type="date" name="end" value="<?= $end; ?>" min="<?= date('Y-m-d'); ?>">
+        <select name="type" class="select" required>
+            <option value="" selected>- Select Type -</option>
+            <option value="General Activity">General Activity</option>
+            <option value="Engineer Activity">Engineer Activity</option>
+        </select>
+        &nbsp; From : <input type="date" name="start" value="<?= $start; ?>"> &nbsp; To : <input type="date" name="end" value="<?= $end; ?>" min="<?= date('Y-m-d'); ?>">
         <input type="submit" name="search" value="Search">
     </form>
 
@@ -37,9 +56,9 @@
                     <th colspan="2" style="text-align:center;">Action</th>
                 </tr>
                 <?php
-                    if($getData->cekDAFromTo($dataUser['_id_pekerja'], $start, $end) > 0){
+                    if($cekDailyActivity > 0){
                         $no = 1;
-                        foreach($getData->ListDAFromTo($dataUser['_id_pekerja'], $start, $end) as $row){ ?>
+                        foreach($dataDailyActivity as $row){ ?>
                             <tr>
                                 <td><?= $no++."."; ?></td>
                                 <td><?= strftime('%d %B %Y', strtotime($row['_tanggal'])); ?></td>
