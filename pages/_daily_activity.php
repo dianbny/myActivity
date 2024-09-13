@@ -57,13 +57,20 @@
                                 </td>
                                 <td style="text-align:center;">
                                     <?php
-                                        if($row['_status'] == "Pending"){ ?>
-                                            <a href="follow-up-activity-<?= $row['_id_aktifitas']; ?>" class="linkDetail"><i class="fa fa-cogs" aria-hidden="true"></i></a>
-                                  <?php }
-                                        else { ?>
-                                            <span style="color:green;font-size:14px;"><i class="fa fa-check" aria-hidden="true"></i>
-                                            </span>
-                                  <?php }
+                                        if($row['_status'] == "Pending"){ 
+                                            if($getData->cekFollowUp($row['_id_aktifitas'], $row['_id_pekerja']) < 1){ ?>
+                                                <a href="follow-up-activity-<?= $row['_id_aktifitas']; ?>" class="linkDetail"><i class="fa fa-cogs" aria-hidden="true"></i></a>
+                                      <?php }
+                                            else {
+                                                $ketFU = $getData->getDataFollowUp($row['_id_aktifitas'], $row['_id_pekerja']);
+                                                ?>
+
+                                                <?= strftime('%d %B %Y', strtotime($ketFU['_tanggal'])) ?> | <?= $ketFU['_status']; ?>
+                                      <?php }  
+                                        }
+                                        else { 
+                                            echo "-";
+                                        }
                                     ?>
                                 </td>
                                 <td><?= $row['_keterangan']; ?></td>
@@ -75,7 +82,7 @@
                     }
                     else { ?>
                         <tr>
-                            <td colspan="6" style="color:red;text-align:center;">Data Activity Not Found !</td>
+                            <td colspan="9" style="color:red;text-align:center;">Data Activity Not Found !</td>
                         </tr>    
              <?php  }    
                 ?>
