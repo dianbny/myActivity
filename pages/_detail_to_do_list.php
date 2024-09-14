@@ -4,6 +4,10 @@
     }
 
     if(isset($_GET['id'])){
+        if($getData->cekID('_tb_to_do_list','_id','_id_pekerja', $_GET['id'], $dataUser['_id_pekerja']) < 1 ){
+            header('location:logout');
+        }
+
         $id = $_GET['id'];
         $dataTDL = $getData->getDataTDLbyID($id);
     }

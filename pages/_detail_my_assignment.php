@@ -4,6 +4,10 @@
     }
 
     if(isset($_GET['id'])){
+        if($getData->cekID('_tb_assignment','_id_tugas','_id_user', $_GET['id'], $dataUser['_id_pekerja']) < 1 ){
+            header('location:logout');
+        }
+
         $id = $_GET['id'];
         $dataAssignment = $getData->getMyAssignmentbyID($id);
     }
