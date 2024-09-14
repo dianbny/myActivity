@@ -23,14 +23,14 @@
                 <script>
                     setTimeout(function() { 
                         swal({
-                            title: "Terjadi Kesalahan !",
-                            text: "Username tidak boleh mengandung karakter khusus !",
+                            title: "Error !",
+                            text: "Username or password incorrect !",
                             type: "error",
                             confirmButtonText: "OK"
                             },
                                 function(isConfirm){
                                     if (isConfirm) {
-                                        window.location.href = "daftar-pegawai";
+                                        window.location.href = "login";
                                     }
                         }); }, 500);
                 </script>
