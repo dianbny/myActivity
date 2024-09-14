@@ -49,9 +49,9 @@
                             <td style="text-align:center;">
                                 <?php
                                     if($row['_status'] == "Pending"){ 
-                                        if($getData->cekFollowUp($row['_id_aktifitas'], $row['_id_pekerja']) < 1){ ?>
-                                                <a href="follow-up-activity-<?= $row['_id_aktifitas']; ?>" class="linkDetail"><i class="fa fa-cogs" aria-hidden="true"></i></a>
-                                  <?php }
+                                        if($getData->cekFollowUp($row['_id_aktifitas'], $row['_id_pekerja']) < 1){ 
+                                            echo "Need Follow Up";
+                                        }
                                         else {
                                             $ketFU = $getData->getDataFollowUp($row['_id_aktifitas'], $row['_id_pekerja']);
                                             ?>
