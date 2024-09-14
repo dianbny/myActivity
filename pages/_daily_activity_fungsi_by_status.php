@@ -26,7 +26,7 @@
                     <th style="text-align:center;">Status</th>
                     <th style="text-align:center;">Follow Up</th>
                     <th>Additional Information</th>
-                    <th>Technician Name</th>
+                    <th>Engineer</th>
                 </tr>
                 <?php
                     $no = 1;
