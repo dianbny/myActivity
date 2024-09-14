@@ -71,6 +71,19 @@
 			return $cekJumlah;
 		}
 
+		//Cek Daily Activity 
+		function cekDAFromToTipe($id, $start, $end, $tipe){
+			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
+			$startFilter = mysqli_real_escape_string($this->koneksi, $start);
+			$endFilter = mysqli_real_escape_string($this->koneksi, $end);
+			$tipeFilter = mysqli_real_escape_string($this->koneksi, $tipe);
+
+			$dataActivity = mysqli_query($this->koneksi,"SELECT * FROM _tb_daily_activity_app WHERE _id_pekerja = '$idFilter' AND _tanggal BETWEEN '$startFilter' AND '$endFilter' AND _tipe_aktifitas = '$tipeFilter'");
+			$cekJumlah = mysqli_num_rows($dataActivity);
+			
+			return $cekJumlah;
+		}
+
 		//Cek Daily Activity by Status
 		function cekDAUserbyStatus($id, $thn, $status){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
@@ -119,6 +132,19 @@
 			return $cekJumlah;
 		}
 
+		//Cek Daily Activity 
+		function cekDAFungsiFromToTipe($id, $start, $end, $tipe){
+			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
+			$startFilter = mysqli_real_escape_string($this->koneksi, $start);
+			$endFilter = mysqli_real_escape_string($this->koneksi, $end);
+			$tipeFilter = mysqli_real_escape_string($this->koneksi, $tipe);
+
+			$dataActivity = mysqli_query($this->koneksi,"SELECT * FROM _tb_daily_activity_app, _tb_pekerja_pegawai, _tb_fungsi WHERE _tb_daily_activity_app._id_pekerja = _tb_pekerja_pegawai._id_pekerja AND _tb_fungsi._id_fungsi = _tb_pekerja_pegawai._fungsi AND _tb_pekerja_pegawai._fungsi = '$idFilter' AND _tb_daily_activity_app._tanggal BETWEEN '$startFilter' AND '$endFilter' AND _tb_daily_activity_app._tipe_aktifitas = '$tipeFilter'");
+			$cekJumlah = mysqli_num_rows($dataActivity);
+			
+			return $cekJumlah;
+		}
+
 		//List Daily Activity
 		function ListDailyActivityUser($id, $bln, $thn){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
@@ -148,6 +174,21 @@
 		}
 
 		//List Daily Activity
+		function ListDAFromToTipe($id, $start, $end, $tipe){
+			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
+			$startFilter = mysqli_real_escape_string($this->koneksi, $start);
+			$endFilter = mysqli_real_escape_string($this->koneksi, $end);
+			$tipeFilter = mysqli_real_escape_string($this->koneksi, $tipe);
+			
+			$dataActivity = mysqli_query($this->koneksi,"SELECT * FROM _tb_daily_activity_app WHERE _id_pekerja = '$idFilter' AND _tanggal BETWEEN '$startFilter' AND '$endFilter' AND _tipe_aktifitas = '$tipeFilter' ORDER BY _tanggal ASC, _id_aktifitas DESC");
+			while($listActivity = mysqli_fetch_assoc($dataActivity)){
+				$result[] = $listActivity;
+			}
+
+			return $result;
+		}
+
+		//List Daily Activity
 		function ListDailyActivityFungsi($id, $bln, $thn){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
 			$blnFilter = mysqli_real_escape_string($this->koneksi, $bln);
@@ -168,6 +209,21 @@
 			$endFilter = mysqli_real_escape_string($this->koneksi, $end);
 			
 			$dataActivity = mysqli_query($this->koneksi,"SELECT _tb_daily_activity_app._id_aktifitas, _tb_daily_activity_app._tanggal, _tb_pekerja_pegawai._id_pekerja, _tb_pekerja_pegawai._nama_pekerja, _tb_daily_activity_app._tipe_aktifitas, _tb_daily_activity_app._aktifitas, _tb_daily_activity_app._status, _tb_daily_activity_app._keterangan FROM _tb_daily_activity_app, _tb_pekerja_pegawai, _tb_fungsi WHERE _tb_daily_activity_app._id_pekerja = _tb_pekerja_pegawai._id_pekerja AND _tb_fungsi._id_fungsi = _tb_pekerja_pegawai._fungsi AND _tb_pekerja_pegawai._fungsi = '$idFilter' AND _tb_daily_activity_app._tanggal BETWEEN '$startFilter' AND '$endFilter' ORDER BY _tb_daily_activity_app._tanggal ASC, _tb_daily_activity_app._id_aktifitas DESC");
+			while($listActivity = mysqli_fetch_assoc($dataActivity)){
+				$result[] = $listActivity;
+			}
+
+			return $result;
+		}
+
+		//List Daily Activity
+		function ListDAFungsiFromToTipe($id, $start, $end, $tipe){
+			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
+			$startFilter = mysqli_real_escape_string($this->koneksi, $start);
+			$endFilter = mysqli_real_escape_string($this->koneksi, $end);
+			$tipeFilter = mysqli_real_escape_string($this->koneksi, $tipe);
+			
+			$dataActivity = mysqli_query($this->koneksi,"SELECT _tb_daily_activity_app._id_aktifitas, _tb_daily_activity_app._tanggal, _tb_pekerja_pegawai._id_pekerja, _tb_pekerja_pegawai._nama_pekerja, _tb_daily_activity_app._tipe_aktifitas, _tb_daily_activity_app._aktifitas, _tb_daily_activity_app._status, _tb_daily_activity_app._keterangan FROM _tb_daily_activity_app, _tb_pekerja_pegawai, _tb_fungsi WHERE _tb_daily_activity_app._id_pekerja = _tb_pekerja_pegawai._id_pekerja AND _tb_fungsi._id_fungsi = _tb_pekerja_pegawai._fungsi AND _tb_pekerja_pegawai._fungsi = '$idFilter' AND _tb_daily_activity_app._tanggal BETWEEN '$startFilter' AND '$endFilter' AND _tb_daily_activity_app._tipe_aktifitas = '$tipeFilter' ORDER BY _tb_daily_activity_app._tanggal ASC, _tb_daily_activity_app._id_aktifitas DESC");
 			while($listActivity = mysqli_fetch_assoc($dataActivity)){
 				$result[] = $listActivity;
 			}
