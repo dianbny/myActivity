@@ -211,13 +211,47 @@
                             }); }, 500);
                     </script>
           <?php }
+                elseif(!preg_match("/^[A-Za-z ]*$/", $_POST['type'])){ ?>
+                    <script>
+                        setTimeout(function() { 
+                            swal({
+                                title: "Error !",
+                                text: "Type of activity must not contain special characters !",
+                                type: "error",
+                                confirmButtonText: "OK"
+                                },
+                                    function(isConfirm){
+                                        if (isConfirm) {
+                                            window.location.href = "new-activity";
+                                        }
+                            }); }, 500);
+                    </script>
+          <?php }
+                elseif(!preg_match("/^[a-zA-Z0-9 .,()&-]*$/", $_POST['info'])){ ?>
+                    <script>
+                        setTimeout(function() { 
+                            swal({
+                                title: "Error !",
+                                text: "Additional Information must not contain special characters !",
+                                type: "error",
+                                confirmButtonText: "OK"
+                                },
+                                    function(isConfirm){
+                                        if (isConfirm) {
+                                            window.location.href = "new-activity";
+                                        }
+                            }); }, 500);
+                    </script>
+          <?php }
                 
                 else {
                     $tanggal = $_POST['date'];
+                    $tipe = $_POST['type'];
                     $aktifitas = trim($_POST['activity']);
                     $status = $_POST['status'];
+                    $info = trim($_POST['info']);
 
-                    $saveData->updateAktifitas($id, $tanggal, ucwords($aktifitas), $status); ?>
+                    $saveData->updateAktifitas($id, $tanggal, $tipe, ucwords($aktifitas), $status, ucwords($info)); ?>
 
                             <script>
                                 setTimeout(function() { 

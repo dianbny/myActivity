@@ -16,13 +16,15 @@
 		}
 
 		//Update Data Aktifitas
-        function updateAktifitas($id, $tanggal, $aktifitas, $status){
+        function updateAktifitas($id, $tanggal, $tipe, $aktifitas, $status, $info){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
 			$tanggalFilter = mysqli_real_escape_string($this->koneksi, $tanggal);
+			$tipeFilter = mysqli_real_escape_string($this->koneksi, $tipe);
 			$aktifitasFilter = mysqli_real_escape_string($this->koneksi, $aktifitas);
 			$statusFilter = mysqli_real_escape_string($this->koneksi, $status);
+			$infoFilter = mysqli_real_escape_string($this->koneksi, $info);
 			
-			mysqli_query($this->koneksi,"UPDATE _tb_daily_activity_app SET _tanggal = '$tanggalFilter', _aktifitas = '$aktifitasFilter', _status = '$statusFilter' WHERE _id_aktifitas = '$idFilter' ");
+			mysqli_query($this->koneksi,"UPDATE _tb_daily_activity_app SET _tanggal = '$tanggalFilter', _tipe_aktifitas = '$tipeFilter', _aktifitas = '$aktifitasFilter', _status = '$statusFilter', _keterangan = '$infoFilter' WHERE _id_aktifitas = '$idFilter' ");
 		}
 
 		//Save Assignment
