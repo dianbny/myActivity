@@ -36,7 +36,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets/images/pertamina.png" type="image/gif">
+    <link rel="icon" href="assets/images/icon.png" type="image/gif">
     <link rel="stylesheet" type="text/css" href="assets/css/_style_page.css">
     <link rel="stylesheet" type="text/css" href="assets/vendors/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
@@ -51,15 +51,14 @@
     <!-- Topbar -->
     <div class="topbar">
         <span style="font-size:26px;cursor:pointer;color:black;" onclick="openNav()"><i class="fa fa-bars" aria-hidden="true"></i></span>&nbsp;&nbsp;
-        <img src="assets/images/pertamina.png">
-        <span class="span">PERTAMINA <span style="color:red;">EP</span></span>
+        <img src="assets/images/myactivity.png">
     </div>
     <!-- Akhir Topbar -->
 
     <!-- Sidebar -->
     <div id="mySidenav" class="sidenav">
+        <img src="assets/images/myactivity.png">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
-        <img src="assets/images/pertamina.png">
         <a href="dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp; Dashboard</a>
         <a href="<?= ($dataUserLogin['_level'] == "user") ? "daily-activity" : "daily-activity-fungsi";?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Daily Activity</a>
         <a href="<?= ($dataUserLogin['_level'] == "user") ? "my-assignment" : "assignment";?>"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp; <?= ($dataUserLogin['_level'] == "user") ? "My Assignment" : "Assignment";?></a>
@@ -287,7 +286,7 @@
         <!-- Daily Activity & My Assignment -->
         <div class="panel-bottom">
             <div class="dashboard-bottom">
-                <span class="color6">Daily Activity Report </span>
+                <span class="color6">Daily Activity </span>
                 <div class="table-dashboard">
                     <?php
                         if($dataUserLogin['_level'] == "user"){
@@ -324,11 +323,11 @@
                         }
                     ?>
                 </div>
-                &nbsp;&nbsp; <em><strong>Show 3 New Entry Data</strong></em>
+                &nbsp;&nbsp; <em><strong>Show 10 New Entry Data</strong></em>
             </div>
 
             <div class="dashboard-bottom">
-                <span class="color6"><?= ($dataUserLogin['_level'] == "user") ? "My Assignment Report" : "Assignment Report"; ?></span>
+                <span class="color6"><?= ($dataUserLogin['_level'] == "user") ? "My Assignment" : "Assignment"; ?></span>
                 <div class="table-dashboard">
                     <?php
                         if($getData->cekMyAssignment(($dataUserLogin['_level'] == "user") ? "_id_user" : "_id_pekerja", $dataUser['_id_pekerja'], date('m'), date('Y')) > 0){
@@ -359,7 +358,7 @@
                   <?php }
                     ?>
                 </div>
-                &nbsp;&nbsp; <em><strong>Show 3 New Entry Data</strong></em>
+                &nbsp;&nbsp; <em><strong>Show 10 New Entry Data</strong></em>
             </div>
         </div>
 
@@ -385,7 +384,7 @@
                   <?php }
                     ?>
                 </div>
-                &nbsp;&nbsp; <em><strong>Show 3 New Entry Data</strong></em>
+                &nbsp;&nbsp; <em><strong>Show 10 New Entry Data</strong></em>
             </div>
             <div class="dashboard-bottom">
                 <span class="color6">Overtime</span>
