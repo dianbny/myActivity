@@ -40,9 +40,7 @@ a{
     margin-left: 5px;
 }
 .topbar img{
-    width: 35px;
-    height: 30px;
-    margin-left: 5px;
+    width: 150px;
 }
 .container {
     width: 98%;
@@ -277,7 +275,7 @@ a{
     padding: 7px;
 }
 .table-style tr td{
-    padding: 4px;
+    padding: 8px;
     font-size: 11px;
     
 }
@@ -286,7 +284,7 @@ a{
 }
 .table-style tr:hover td{
     cursor: pointer;
-    background-color: whitesmoke;
+
 }
 /* Style Navbar */
 .sidenav {
@@ -315,7 +313,7 @@ a{
 .sidenav img {
       margin-left: auto;
       margin-right: auto;
-      width: 50px;
+      width: 100px;
       display: block;
       margin-bottom: 35px;
 }
