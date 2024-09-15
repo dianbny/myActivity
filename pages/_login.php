@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets/images/pertamina.png" type="image/gif">
+    <link rel="icon" href="assets/images/icon.png" type="image/gif">
     <link rel="stylesheet" type="text/css" href="assets/css/_style_login.css">
     <link rel="stylesheet" type="text/css" href="assets/vendors/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -13,18 +13,6 @@
     
     <!-- Container -->
     <div class="container animate__animated animate__fadeInDown">
-
-        <!-- Atas/Header Container -->
-        <div class="top">
-            <div class="icon">
-                <img src="assets/images/pertamina.png" alt="Pertamina">
-            </div>
-            <div class="title">
-                PERTAMINA <span style="color:red;">EP</span>
-            </div>
-        </div>
-        <!-- Akhir Atas/Header Container -->
-
 
         <!-- Icon Form Login -->
         <div class="icon-form">
@@ -48,25 +36,13 @@
         </form>
         <!-- Akhir Form Login -->
 
-        <!-- Bawah/Footer Container -->
-        <div class="container-footer">
-            <div>
-                <div class="listImg">
-                    <img src="assets/images/bumn.png" alt="BUMN" style="width:100px;">
-                </div>
-                <div class="listImg">
-                    <img src="assets/images/akhlak.png" alt="Akhlak" style="width:70px;">
-                </div>
-            </div>
-        </div>
-        <!-- Akhir Bawah/Footer Container -->
 
     </div>
     <!-- Akhir Container -->
 
     <!-- Footer Halaman -->
     <div class="footer">
-        Management Daily Activity Report &copy; <?= date('Y'); ?>
+        Management Daily Activity &copy; <?= date('Y'); ?>
     </div>
     <!-- Akhir Footer -->
 
