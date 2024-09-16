@@ -40,9 +40,6 @@
         </select>
         <input type="submit" name="search" value="Search">
     </form>
-        <?php
-             if($getData->cekToDoList($dataUser['_id_pekerja'], $bulan, $tahun) > 0){
-        ?>
         <span style="font-size:12px;">To Do List : <?= $bulan."/".$tahun; ?> | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Waiting </span>
         <div class="table-layout">
             <table class="table-style">
@@ -54,34 +51,36 @@
                     <th colspan="2" style="text-align:center;">Action</th>
                 </tr>
                 <?php
-                    $no = 1;
-                    foreach($getData->ListToDoList($dataUser['_id_pekerja'], $bulan, $tahun) as $row){ ?>
+                    if($getData->cekToDoList($dataUser['_id_pekerja'], $bulan, $tahun) > 0){
+                        $no = 1;
+                        foreach($getData->ListToDoList($dataUser['_id_pekerja'], $bulan, $tahun) as $row){ ?>
+                            <tr>
+                                <td><?= $no++."."; ?></td>
+                                <td><?= strftime('%d %B %Y', strtotime($row['_tanggal'])); ?></td>
+                                <td style="text-decoration:<?= ($row['_status'] == "Done") ? "line-through" : ""; ?>"><?= $row['_plan']; ?></td>
+                                <td style="text-align:center;">
+                                    <?php
+                                        if($row['_status'] == "Done"){ ?>
+                                            <span style="color:green;font-size:14px;"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                  <?php }
+                                        else{ ?>
+                                            <span style="color:darkorange;font-size:14px;"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                <?php }
+                                    ?>
+                                </td>
+                                <td style="text-align:center;"><a href="detail-to-do-list-<?= $row['_id']; ?>" class="linkDetail"><i class="fa fa-info-circle" aria-hidden="true"></i></a></td>
+                                <td style="text-align:center;"><a href="javascript:void(0)" data-id="<?= $row['_id']; ?>" class="linkError konfirmDeleteTDL"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                            </tr>
+                  <?php }
+                    }
+                    else { ?>
                         <tr>
-                            <td><?= $no++."."; ?></td>
-                            <td><?= strftime('%d %B %Y', strtotime($row['_tanggal'])); ?></td>
-                            <td style="text-decoration:<?= ($row['_status'] == "Done") ? "line-through" : ""; ?>"><?= $row['_plan']; ?></td>
-                            <td style="text-align:center;">
-                                <?php
-                                    if($row['_status'] == "Done"){ ?>
-                                        <span style="color:green;font-size:14px;"><i class="fa fa-circle" aria-hidden="true"></i></span>
-                              <?php }
-                                    else{ ?>
-                                        <span style="color:darkorange;font-size:14px;"><i class="fa fa-circle" aria-hidden="true"></i></span>
-                            <?php }
-                                ?>
-                            </td>
-                            <td style="text-align:center;"><a href="detail-to-do-list-<?= $row['_id']; ?>" class="linkDetail"><i class="fa fa-info-circle" aria-hidden="true"></i></a></td>
-                            <td style="text-align:center;"><a href="javascript:void(0)" data-id="<?= $row['_id']; ?>" class="linkError konfirmDeleteTDL"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
-                        </tr>
-              <?php }    
+                            <td colspan="6" style="color:red;text-align:center;">To Do List Not Found !</td>
+                        </tr>  
+              <?php }   
                 ?>
             </table>
         </div>
-<?php }
-      else { ?>
-        <br>
-        <span style="color:red;font-size:14px;">Data Not Found !</span><br>
-<?php }
-?>
+
 <a href="new-to-do-list" class="linkTransferPg"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp; New List</a>
 <a href="to-do-list" class="linkTransferPg"><i class="fa fa-refresh" aria-hidden="true"></i> &nbsp; Refresh</a>
