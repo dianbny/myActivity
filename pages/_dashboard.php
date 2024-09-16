@@ -207,7 +207,7 @@
 
         <label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;Dashboard</label>
         <p style="margin:20px 0px;font-size:13px;">
-           &nbsp;Hi, <strong><?= $dataUser['_nama_pekerja']; ?></strong><br>
+           &nbsp;Hi, <strong><?= $dataUser['_nama_pekerja']; ?></strong> | Date : <?= date('d-m-Y'); ?><br>
            &nbsp;<a href="logout" class="btn-danger">Log Out &nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></a>
         </p>
         <!-- Dashboar Total -->
@@ -268,14 +268,14 @@
                     <strong>Overtime</strong>
                         <?php
                             if($dataUserLogin['_level'] == "user"){ ?>
-                                <span class="span-ket" style="background-color:dodgerblue;"><a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Requested (<?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Requested"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:green;"><a href=""><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Accepted (<?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Accepted"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:maroon;"><a href=""><i class="fa fa-times" aria-hidden="true"></i>&nbsp; Rejected (<?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Rejected"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:dodgerblue;"><a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Request (<?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Request"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:green;"><a href=""><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Accept (<?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Accept"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:maroon;"><a href=""><i class="fa fa-times" aria-hidden="true"></i>&nbsp; Reject (<?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Reject"); ?>)</a></span>
                       <?php }
                             else { ?>
-                                <span class="span-ket" style="background-color:dodgerblue;"><a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Requested (<?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Requested"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:green;"><a href=""><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Accepted (<?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Accepted"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:maroon;"><a href=""><i class="fa fa-times" aria-hidden="true"></i>&nbsp; Rejected (<?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Rejected"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:dodgerblue;"><a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Request (<?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Request"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:green;"><a href=""><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Accept (<?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Accept"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:maroon;"><a href=""><i class="fa fa-times" aria-hidden="true"></i>&nbsp; Reject (<?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Reject"); ?>)</a></span>
                       <?php }
                         ?>
                 </div>
