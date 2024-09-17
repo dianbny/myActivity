@@ -52,6 +52,11 @@
     <div class="topbar">
         <span style="font-size:26px;cursor:pointer;color:black;" onclick="openNav()"><i class="fa fa-bars" aria-hidden="true"></i></span>&nbsp;&nbsp;
         <img src="assets/images/myactivity.png">
+        <div class="divuser">
+            Hi, &nbsp;<strong><?= $dataUser['_nama_pekerja']; ?></strong> | Date : <?= date('d-m-Y'); ?>
+            <img src="assets/images/user.png" alt="User">
+        </div>
+
     </div>
     <!-- Akhir Topbar -->
 
@@ -63,7 +68,7 @@
         <a href="<?= ($dataUserLogin['_level'] == "user") ? "daily-activity" : "daily-activity-fungsi";?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Daily Activity</a>
         <a href="<?= ($dataUserLogin['_level'] == "user") ? "my-assignment" : "assignment";?>"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp; <?= ($dataUserLogin['_level'] == "user") ? "My Assignment" : "Assignment";?></a>
         <a href="to-do-list"><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp; To-Do List</a>
-        <a href="my-overtime"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; Overtime</a>
+        <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; Overtime</a>
         <a href="change-password"><i class="fa fa-key" aria-hidden="true"></i>&nbsp; Password</a>
         <a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Logout</a>
         
@@ -206,76 +211,73 @@
                 case "dashboard" : ?>
 
         <label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;Dashboard</label>
-        <p style="margin:20px 0px;font-size:13px;">
-           &nbsp;Hi, <strong><?= $dataUser['_nama_pekerja']; ?></strong> | Date : <?= date('d-m-Y'); ?><br>
-           &nbsp;<a href="logout" class="btn-danger">Log Out &nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></a>
-        </p>
+
         <!-- Dashboar Total -->
         <div class="panel">
             <div class="dashboard">
                 <div class="icon">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <img src="assets/images/daily-activity-black.png" alt="DailyActivity">
                 </div>
                 <div class="title">
                     <strong>Daily Activity</strong>
                         <?php
                             if($dataUserLogin['_level'] == "user"){ ?>
-                                <span class="span-ket" style="background-color:green;"><a href="daily-activity-status-<?= "Done"; ?>"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Done (<?= $getData->cekDAUserbyStatus($dataUser['_id_pekerja'], date('Y'), "Done"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:darkorange;"><a href="daily-activity-status-<?= "Pending"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Pending (<?= $getData->cekDAUserbyStatus($dataUser['_id_pekerja'], date('Y'), "Pending"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:#008000;"><a href="daily-activity-status-<?= "Done"; ?>"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Done <div class="icon-total"><?= $getData->cekDAUserbyStatus($dataUser['_id_pekerja'], date('Y'), "Done"); ?></div></a></span>
+                                <span class="span-ket" style="background-color:#FF8C00;"><a href="daily-activity-status-<?= "Pending"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Pending <div class="icon-total"><?= $getData->cekDAUserbyStatus($dataUser['_id_pekerja'], date('Y'), "Pending"); ?></div></a></span>
                       <?php }
                             else { ?>
-                                <span class="span-ket" style="background-color:green;"><a href="daily-activity-fungsi-status-<?= "Done"; ?>"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Done (<?= $getData->cekDAFungsibyStatus($dataUser['_fungsi'], date('Y'), "Done"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:darkorange;"><a href="daily-activity-fungsi-status-<?= "Pending"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Pending (<?= $getData->cekDAFungsibyStatus($dataUser['_fungsi'], date('Y'), "Pending"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:#008000;"><a href="daily-activity-fungsi-status-<?= "Done"; ?>"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Done <div class="icon-total"><?= $getData->cekDAFungsibyStatus($dataUser['_fungsi'], date('Y'), "Done"); ?></div></a></span>
+                                <span class="span-ket" style="background-color:#FF8C00;"><a href="daily-activity-fungsi-status-<?= "Pending"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Pending <div class="icon-total"><?= $getData->cekDAFungsibyStatus($dataUser['_fungsi'], date('Y'), "Pending"); ?></div></a></span>
                       <?php }
                         ?>
                 </div>
             </div>
             <div class="dashboard">
                 <div class="icon">
-                    <i class="fa fa-tasks" aria-hidden="true"></i>
+                    <img src="assets/images/assignment-black.png" alt="Assignment">
                 </div>
                 <div class="title">
                     <strong><?= ($dataUserLogin['_level'] == "user") ? "My Assignment" : "Assignment" ?></strong>
                         <?php
                             if($dataUserLogin['_level'] == "user"){ ?>
-                                <span class="span-ket" style="background-color:dodgerblue;"><a href="my-assignment-status-<?= "Request"; ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Request (<?= $getData->cekAssUserbyStatus("_id_user", $dataUser['_id_pekerja'], date('Y'), "Request"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:green;"><a href="my-assignment-status-<?= "Done"; ?>"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Done (<?= $getData->cekAssUserbyStatus("_id_user", $dataUser['_id_pekerja'], date('Y'), "Done"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:darkorange;"><a href="my-assignment-status-<?= "Pending"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Pending (<?= $getData->cekAssUserbyStatus("_id_user", $dataUser['_id_pekerja'], date('Y'), "Pending"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:#1E90FF;"><a href="my-assignment-status-<?= "Request"; ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Request <div class="icon-total"><?= $getData->cekAssUserbyStatus("_id_user", $dataUser['_id_pekerja'], date('Y'), "Request"); ?></div></a></span>
+                                <span class="span-ket" style="background-color:#008000;"><a href="my-assignment-status-<?= "Done"; ?>"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Done <div class="icon-total"><?= $getData->cekAssUserbyStatus("_id_user", $dataUser['_id_pekerja'], date('Y'), "Done"); ?></div></a></span>
+                                <span class="span-ket" style="background-color:#FF8C00;"><a href="my-assignment-status-<?= "Pending"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Pending <div class="icon-total"><?= $getData->cekAssUserbyStatus("_id_user", $dataUser['_id_pekerja'], date('Y'), "Pending"); ?></div></a></span>
                       <?php }
                             else { ?>
-                                <span class="span-ket" style="background-color:dodgerblue;"><a href="detail-assignment-status-<?= "Request"; ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Request (<?= $getData->cekAssUserbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Request"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:green;"><a href="detail-assignment-status-<?= "Done"; ?>"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Done (<?= $getData->cekAssUserbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Done"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:darkorange;"><a href="detail-assignment-status-<?= "Pending"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Pending (<?= $getData->cekAssUserbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Pending"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:#1E90FF;"><a href="detail-assignment-status-<?= "Request"; ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Request <div class="icon-total"><?= $getData->cekAssUserbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Request"); ?></div></a></span>
+                                <span class="span-ket" style="background-color:#008000;"><a href="detail-assignment-status-<?= "Done"; ?>"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Done <div class="icon-total"><?= $getData->cekAssUserbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Done"); ?></div></a></span>
+                                <span class="span-ket" style="background-color:#FF8C00;"><a href="detail-assignment-status-<?= "Pending"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Pending <div class="icon-total"><?= $getData->cekAssUserbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Pending"); ?></div></a></span>
                       <?php }
                         ?>
                 </div>
             </div>
             <div class="dashboard">
                 <div class="icon">
-                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                    <img src="assets/images/todolist-black.png" alt="ToDoList">
                 </div>
                 <div class="title">
                     <strong>To-Do List</strong>
-                    <span class="span-ket" style="background-color:green;"><a href="to-do-list-status-<?= "Done"; ?>"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Done (<?= $getData->cekTDLUserbyStatus($dataUser['_id_pekerja'], date('Y'), "Done"); ?>)</a></span>
-                    <span class="span-ket" style="background-color:darkorange;"><a href="to-do-list-status-<?= "Waiting"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Waiting (<?= $getData->cekTDLUserbyStatus($dataUser['_id_pekerja'], date('Y'), "Waiting"); ?>)</a></span>
+                    <span class="span-ket" style="background-color:#008000;"><a href="to-do-list-status-<?= "Done"; ?>"><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Done <div class="icon-total"><?= $getData->cekTDLUserbyStatus($dataUser['_id_pekerja'], date('Y'), "Done"); ?></div></a></span>
+                    <span class="span-ket" style="background-color:#FF8C00;"><a href="to-do-list-status-<?= "Waiting"; ?>"><i class="fa fa-hourglass-half" aria-hidden="true"></i>&nbsp; Waiting <div class="icon-total"><?= $getData->cekTDLUserbyStatus($dataUser['_id_pekerja'], date('Y'), "Waiting"); ?></div></a></span>
                 </div>
             </div>
             <div class="dashboard">
                 <div class="icon">
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    <img src="assets/images/overtime-black.png" alt="Overtime">
                 </div>
                 <div class="title">
                     <strong>Overtime</strong>
                         <?php
                             if($dataUserLogin['_level'] == "user"){ ?>
-                                <span class="span-ket" style="background-color:dodgerblue;"><a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Request (<?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Request"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:green;"><a href=""><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Accept (<?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Accept"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:maroon;"><a href=""><i class="fa fa-times" aria-hidden="true"></i>&nbsp; Reject (<?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Reject"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:#1E90FF;"><a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Request <div class="icon-total"><?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Request"); ?></div></a></span>
+                                <span class="span-ket" style="background-color:#008000;"><a href=""><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Accept <div class="icon-total"><?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Accept"); ?></div></a></span>
+                                <span class="span-ket" style="background-color:maroon;"><a href=""><i class="fa fa-times" aria-hidden="true"></i>&nbsp; Reject <div class="icon-total"><?= $getData->cekOTbyStatus("_id_pekerja", $dataUser['_id_pekerja'], date('Y'), "Reject"); ?></div></a></span>
                       <?php }
                             else { ?>
-                                <span class="span-ket" style="background-color:dodgerblue;"><a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Request (<?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Request"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:green;"><a href=""><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Accept (<?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Accept"); ?>)</a></span>
-                                <span class="span-ket" style="background-color:maroon;"><a href=""><i class="fa fa-times" aria-hidden="true"></i>&nbsp; Reject (<?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Reject"); ?>)</a></span>
+                                <span class="span-ket" style="background-color:#1E90FF;"><a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Request <div class="icon-total"><?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Request"); ?></div></a></span>
+                                <span class="span-ket" style="background-color:#008000;"><a href=""><i class="fa fa-check" aria-hidden="true"></i>&nbsp; Accept <div class="icon-total"><?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Accept"); ?></div></a></span>
+                                <span class="span-ket" style="background-color:maroon;"><a href=""><i class="fa fa-times" aria-hidden="true"></i>&nbsp; Reject <div class="icon-total"><?= $getData->cekOTbyStatus("_id_pengawas", $dataUser['_id_pekerja'], date('Y'), "Reject"); ?></div></a></span>
                       <?php }
                         ?>
                 </div>
@@ -293,11 +295,11 @@
                             if($getData->cekDailyActivityUser($dataUser['_id_pekerja'], date('m'), date('Y')) > 0){
                                 foreach($getData->ListDAUserLimit($dataUser['_id_pekerja'], date('m'), date('Y')) as $row){ ?>
                                     <div class="daily-activity">
-                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp; <?= strftime('%d %B %Y', strtotime($row['_tanggal'])); ?> | <?= $row['_tipe_aktifitas']; ?>
+                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp; <?= strftime('%d %B %Y', strtotime($row['_tanggal'])); ?>
                                         <br><br>
                                         <?= $row['_aktifitas']; ?>
                                         <br><br>
-                                        Status : &nbsp;<i class="fa fa-circle" aria-hidden="true" style="color:<?= ($row['_status'] == "Done") ? "green" : "darkorange";?>"></i>&nbsp; <strong><?= $row['_status']; ?></strong>
+                                        Type of Activity : <?= $row['_tipe_aktifitas']; ?> | &nbsp;<i class="fa fa-circle" aria-hidden="true" style="color:<?= ($row['_status'] == "Done") ? "#008000" : "#FF8C00";?>"></i>&nbsp; <strong><?= $row['_status']; ?></strong>
                                     </div>
                           <?php }
                             }
@@ -309,11 +311,11 @@
                             if($getData->cekDailyActivityFungsi($dataUser['_fungsi'], date('m'), date('Y')) > 0){
                                 foreach($getData->ListDAFungsiLimit($dataUser['_fungsi'], date('m'), date('Y')) as $row){ ?>
                                     <div class="daily-activity">
-                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp; <?= strftime('%d %B %Y', strtotime($row['_tanggal']))." | Activity : ".$row['_nama_pekerja']; ?>
+                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp; <?= strftime('%d %B %Y', strtotime($row['_tanggal'])); ?> | <i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp; <?= $row['_nama_pekerja']; ?>
                                         <br><br>
                                         <?= $row['_aktifitas']; ?>
                                         <br><br>
-                                        Status : &nbsp;<i class="fa fa-circle" aria-hidden="true" style="color:<?= ($row['_status'] == "Done") ? "green" : "darkorange";?>"></i>&nbsp; <strong><?= $row['_status']; ?></strong>
+                                        Type of Activity : <?= $row['_tipe_aktifitas']; ?> | &nbsp;<i class="fa fa-circle" aria-hidden="true" style="color:<?= ($row['_status'] == "Done") ? "#008000" : "#FF8C00";?>"></i>&nbsp; <strong><?= $row['_status']; ?></strong>
                                     </div>
                           <?php }
                             }
@@ -335,21 +337,21 @@
                                 $namaUser = $getData->getDataPekerja(($dataUserLogin['_level'] == "user") ? $row['_id_pekerja'] : $row['_id_user']); 
                                 $color;
                                 if($row['_status'] == "Request"){
-                                    $color = "dodgerblue";
+                                    $color = "#1E90FF";
                                 }
                                 elseif($row['_status'] == "Done"){
-                                    $color = "green";
+                                    $color = "#008000";
                                 }
                                 else{
-                                    $color = "darkorange";
+                                    $color = "#FF8C00";
                                 }    
                                 ?>
                                 <div class="daily-activity">
-                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp; <?= strftime('%d %B %Y', strtotime($row['_tanggal_tugas']))." | ".$namaUser['_nama_pekerja']; ?>
+                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp; <?= strftime('%d %B %Y', strtotime($row['_tanggal_tugas'])); ?> | <i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp; <?= $namaUser['_nama_pekerja']; ?>
                                     <br><br>
                                     <?= $row['_tugas']; ?>
                                     <br><br>
-                                    Status : &nbsp;<i class="fa fa-circle" aria-hidden="true" style="color:<?= $color;?>"></i>&nbsp; <strong><?= $row['_status']; ?></strong>
+                                    &nbsp;<i class="fa fa-circle" aria-hidden="true" style="color:<?= $color;?>"></i>&nbsp; <strong><?= $row['_status']; ?></strong>
                                 </div>
                       <?php }
                         }
@@ -375,7 +377,7 @@
                                     <br><br>
                                     <?= $row['_plan']; ?>
                                     <br><br>
-                                    Status : &nbsp;<i class="fa fa-circle" aria-hidden="true" style="color:<?= ($row['_status'] == "Done") ? "green" : "darkorange";?>"></i>&nbsp; <strong><?= $row['_status']; ?></strong>
+                                    Status : &nbsp;<i class="fa fa-circle" aria-hidden="true" style="color:<?= ($row['_status'] == "Done") ? "#008000" : "#FF8C00";?>"></i>&nbsp; <strong><?= $row['_status']; ?></strong>
                                 </div>
                       <?php }
                         }
