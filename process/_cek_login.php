@@ -56,8 +56,8 @@
                     <script>
                         setTimeout(function() { 
                             swal({
-                                title: "Terjadi Kesalahan !",
-                                text: "Pastikan anda telah terdaftar pada sistem !",
+                                title: "Error !",
+                                text: "Username or password incorrect !",
                                 type: "error",
                                 confirmButtonText: "OK"
                                 },
