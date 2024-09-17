@@ -265,7 +265,7 @@
 			$blnFilter = mysqli_real_escape_string($this->koneksi, $bln);
 			$thnFilter = mysqli_real_escape_string($this->koneksi, $thn);
 			
-			$dataActivity = mysqli_query($this->koneksi,"SELECT _tb_daily_activity_app._tanggal, _tb_pekerja_pegawai._nama_pekerja, _tb_daily_activity_app._aktifitas, _tb_daily_activity_app._status FROM _tb_daily_activity_app, _tb_pekerja_pegawai, _tb_fungsi WHERE _tb_daily_activity_app._id_pekerja = _tb_pekerja_pegawai._id_pekerja AND _tb_fungsi._id_fungsi = _tb_pekerja_pegawai._fungsi AND _tb_pekerja_pegawai._fungsi = '$idFilter' AND MONTH(_tb_daily_activity_app._tanggal) = '$blnFilter' AND YEAR(_tb_daily_activity_app._tanggal) = '$thnFilter' ORDER BY _tb_daily_activity_app._tanggal DESC, _tb_daily_activity_app._id_aktifitas DESC LIMIT 10");
+			$dataActivity = mysqli_query($this->koneksi,"SELECT _tb_daily_activity_app._tanggal, _tb_pekerja_pegawai._nama_pekerja, _tb_daily_activity_app._tipe_aktifitas, _tb_daily_activity_app._aktifitas, _tb_daily_activity_app._status FROM _tb_daily_activity_app, _tb_pekerja_pegawai, _tb_fungsi WHERE _tb_daily_activity_app._id_pekerja = _tb_pekerja_pegawai._id_pekerja AND _tb_fungsi._id_fungsi = _tb_pekerja_pegawai._fungsi AND _tb_pekerja_pegawai._fungsi = '$idFilter' AND MONTH(_tb_daily_activity_app._tanggal) = '$blnFilter' AND YEAR(_tb_daily_activity_app._tanggal) = '$thnFilter' ORDER BY _tb_daily_activity_app._tanggal DESC, _tb_daily_activity_app._id_aktifitas DESC LIMIT 10");
 			while($listActivity = mysqli_fetch_assoc($dataActivity)){
 				$result[] = $listActivity;
 			}
