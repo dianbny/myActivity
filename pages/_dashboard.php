@@ -293,7 +293,7 @@
                             if($getData->cekDailyActivityUser($dataUser['_id_pekerja'], date('m'), date('Y')) > 0){
                                 foreach($getData->ListDAUserLimit($dataUser['_id_pekerja'], date('m'), date('Y')) as $row){ ?>
                                     <div class="daily-activity">
-                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp; <?= strftime('%d %B %Y', strtotime($row['_tanggal'])); ?>
+                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp; <?= strftime('%d %B %Y', strtotime($row['_tanggal'])); ?> | <?= $row['_tipe_aktifitas']; ?>
                                         <br><br>
                                         <?= $row['_aktifitas']; ?>
                                         <br><br>
