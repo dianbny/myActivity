@@ -124,7 +124,7 @@ a{
     transform: translateY(-5px);
 }
 .panel .dashboard .icon{
-    width: 30%;
+    width: 40%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -137,11 +137,11 @@ a{
     margin-right: 8px;
 }
 .panel .dashboard .icon img{
-    width: 85px;
+    width: 90%;
 }
 
 .panel .dashboard .title{
-    width: 70%;
+    width: 60%;
     padding: 5px;
     font-size: 14px;
 }
@@ -250,7 +250,7 @@ a{
 }
 .span-ket {
     display: block;
-    width: 200px !important;
+    width: 85% !important;
     border-radius: 5px !important;
     padding: 4px !important;
     background-color: rgba(8, 8, 8, 0.8);
