@@ -81,7 +81,7 @@ $(document).ready(function(){
             },
             function(isConfirm){
                 if (isConfirm) {
-                    window.location.href = "delete-activity-"+id;
+                    window.location.href = "/myActivity/delete-activity/"+id;
                 }
                 else {
                     window.location.href = "";
@@ -105,7 +105,7 @@ $(document).ready(function(){
             },
             function(isConfirm){
                 if (isConfirm) {
-                    window.location.href = "delete-to-do-list-"+id;
+                    window.location.href = "/myActivity/delete-to-do-list/"+id;
                 }
                 else {
                     window.location.href = "";
@@ -129,7 +129,7 @@ $(document).ready(function(){
             },
             function(isConfirm){
                 if (isConfirm) {
-                    window.location.href = "delete-assignment-"+id;
+                    window.location.href = "/myActivity/delete-assignment/"+id;
                 }
                 else {
                     window.location.href = "";
