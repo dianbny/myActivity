@@ -25,11 +25,11 @@ a{
     position: fixed;
     top: 0;
     width: 100%;
-    height: auto;
+    height: 45px;
     display: flex;
     background-color: white;
-    padding: 8px;
-    z-index: 1000;
+    padding: 5px 0 5px 180px;
+    z-index: 999;
     -webkit-box-shadow: 0px 0px 6px -2px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 6px -2px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 6px -2px rgba(0,0,0,0.75);
@@ -44,24 +44,35 @@ a{
 }
 .topbar .divuser{
     position: absolute;
-    right: 5px;
-    top: 7px;
+    left: 181px;
+    top: 5px;
     width: 350px;
     font-size: 12px;
     padding: 5px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content:flex-start;
 }
 .topbar .divuser img{
     width: 25px;
-    margin-left: 10px;
+    margin-right: 10px;
 }
 .container {
-    width: 98%;
+    width: 87%;
+    margin-left: 180px;
     min-height: 100vh;
-    background-color: white;
-    padding: 60px 10px 40px;
+    background-color: whitesmoke;
+    padding: 60px 5px 20px;
+    position: relative;
+}
+.container-nd{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+    padding: 15px;
+    position: relative;
+    border-radius: 5px;
+    margin-top: 15px;
 }
 .labelTitle{
     font-size: 14px;
@@ -103,14 +114,14 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap:15px;
+    gap:10px;
     margin-top: 25px;
     margin-bottom: 15px;
 }
 .panel .dashboard{
-    width: 100%;
-    height: 140px;
-    padding: 10px;
+    flex: 1;
+    height: 145px;
+    padding: 5px;
     border-radius: 5px;
     color: #000;
     display: flex;
@@ -118,7 +129,7 @@ a{
     align-items: center;
     transition: 0.5s;
     position: relative;
-    border: 1px solid #d8d8d8;
+    background-color: #FFFFFF;
 }
 .panel .dashboard:hover{
     transform: translateY(-5px);
@@ -148,7 +159,7 @@ a{
 .panel .dashboard .title h3{
     margin-bottom: 3px;
 }
-.panel .dashboard .title span{
+.panel .dashboard .title > span{
     font-size: 12px;
     font-weight: bold;
 }
@@ -215,16 +226,72 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     margin-bottom: 20px;
+}.panel-bottom .dashboard-left{
+    flex: 1;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
-.panel-bottom .dashboard-bottom{
+.dashboard-left > div{
     width: 100%;
+    height: 48%;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    font-size: 11px;
+    position: relative;
+}
+.dashboard-left > div span{
+    display: block;
+    width: 100%;
+    height: 30px;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 5px;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px 1px 0 solid #d8d8d8;
+}
+.panel-bottom .dashboard-right{
+    flex: 2;
+    height: 550px;
+    display: flex;
+    gap: 10px;
+}
+.dashboard-right > div{
+    flex: 1;
+    height: 98%;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    font-size: 11px;
+    position: relative;
+}
+
+.dashboard-right > div span{
+    display: block;
+    width: 100%;
+    height: 30px;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 5px;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px 1px 0 solid #d8d8d8;
+}
+
+.panel-bottom .dashboard-bottom{
+    flex: 1;
     height: 350px;
     border-radius: 5px;
     font-size: 12px;
     position: relative;
-    border: 1px solid #d8d8d8;
+    background-color: #FFFFFF;
 }
 .panel-bottom .dashboard-bottom span{
     display: block;
@@ -239,33 +306,35 @@ a{
     border-top-right-radius: 5px;
     border: 1px 1px 0 solid #d8d8d8;
 }
-.panel-bottom .dashboard-bottom .daily-activity{
-    width: 100%;
+.panel-bottom .kanban{
+    flex: 1;
     height: 130px;
     padding: 10px;
-    background-color: rgb(253, 244, 225);
     margin-bottom: 10px;
     text-align: left;
     font-size: 12px;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0;
 }
-.span-ket {
-    display: block;
-    width: 85% !important;
-    border-radius: 5px !important;
-    padding: 4px !important;
-    background-color: rgba(8, 8, 8, 0.8);
+.status-dashboard {
+    width: 90%;
+    border-radius: 5px;
+    padding: 5px;
     margin: 8px 0;
     position: relative;
+    font-size: 11px;
+    font-weight: bold;
 }
 .icon-total{
     position: absolute;
     background-color: #FFFFFF;
     width: 40px;
     padding: 2px;
-    color: #000000 !important;
+    color: #000000;
     border-radius: 5px;
-    right: 3px;
-    top:2px;
+    right: 2px;
+    top:3px;
     text-align: center;
     font-size: 11px;
     font-weight: bold;
@@ -285,11 +354,11 @@ a{
 .table-layout{
     width: 100%;
     height: 70vh;
-    margin: 10px auto;
+    margin: 5px auto;
     overflow: auto;
 }
 .table-dashboard{
-    width: 96%;
+    width: 95%;
     height: 80%;
     margin: 10px auto;
     overflow-x: auto;
@@ -300,7 +369,7 @@ a{
     padding: 5px;
 }
 .table-style tr th{
-    font-size: 12px;
+    font-size: 11px;
     text-align: left;
     background-color: rgba(8, 8, 8, 0.8);
     color: #FFF;
@@ -308,28 +377,40 @@ a{
 }
 .table-style tr td{
     padding: 8px;
-    font-size: 11px;
-    
-}
-.table-style tr:nth-child(odd){
-    background-color: whitesmoke;
+    font-size: 10px;
+    border-bottom: 1px solid #dadada;
 }
 .table-style tr:hover td{
     cursor: pointer;
 
 }
+.divJudul{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    padding-top: 30px;
+}
+.divJudul > div{
+    position: absolute;
+    width: 320px;
+    top: 0;
+    right: 0;
+    text-align: right;
+    padding-right: 5px;
+}
 /* Style Navbar */
 .sidenav {
-    height: 100%;
-    width: 0;
+    width: 175px;
+    height: 100vh;
     position: fixed;
     z-index: 1000;
     top: 0;
     left: 0;
-    background-color:black;
+    bottom: 0;
+    background-color:rgb(33, 36, 46);
     overflow-x: hidden;
     transition: 0.1s;
-    padding-top: 60px;
+    padding-top: 50px;
 }
   
 .sidenav p {
@@ -351,10 +432,11 @@ a{
 }
 
 .sidenav a {
-    padding: 8px;
+    width: 160px;
+    padding: 10px;
     text-decoration: none;
-    font-size: 13px;
-    margin-bottom: 11px;
+    font-size: 12px;
+    margin: 0 auto 15px;
     color: white;
     display: block;
     transition: 0.5s;
@@ -362,14 +444,21 @@ a{
 }
 
 .sidenav i {
-    margin-right:10px;
-    font-size: 14px;
+    font-size: 13px;
+    margin-right:8px;
     margin-left: 8px;
 }
 
 .sidenav a:hover{
-    background-color: white;
-    color: black;
+    background-color: #FFFFFF;
+    color:#000000;
+    border-radius: 8px;
+}
+
+.sidenav .active {
+    background-color: #FFFFFF;
+    color:#000000;
+    border-radius: 8px;
 }
   
 .sidenav .closebtn {
@@ -428,9 +517,11 @@ a{
     font-weight: 900;
 }
 .container-form{
-    width: 450px;
+    width: 550px;
     margin: 0 auto;
-    padding: 5px 10px;
+    padding: 10px 15px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
 }
 .form-input{
     width: 100%;
@@ -439,8 +530,15 @@ a{
 }
 .form-input input[type=text], 
             input[type=number],
-            input[type=date],
             input[type=password]{
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid dimgray;
+    margin: 5px 0 12px;
+    outline: none;
+}
+.form-input .date{
     width: 100%;
     padding: 8px;
     border-radius: 5px;
@@ -468,8 +566,8 @@ a{
     outline: none;
 }
 .form-table{
-    margin: 10px 0 15px;
-    padding: 8px 0;
+    margin: 5px 0 0;
+    padding: 5px 0;
     font-size: 12px;
 }
 .form-table input[type=text],
@@ -551,8 +649,8 @@ a{
     background-color: rgb(90, 1, 1);
 }
 .linkTransferPg{
-    width: 130px;
-    padding: 10px;
+    width: 50px;
+    padding: 5px;
     display: inline-block;
     text-align: center;
     background-color: dodgerblue;
@@ -560,6 +658,7 @@ a{
     border-radius: 5px;
     font-size: 13px;
     margin-top: 20px;
+    margin-left: 5px;
     transition: 0.3s;
 }
 .linkTransferPg:hover{
