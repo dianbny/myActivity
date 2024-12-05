@@ -1,11 +1,14 @@
+<?php
+    require_once '../config/_cons.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets/images/icon.png" type="image/gif">
-    <link rel="stylesheet" type="text/css" href="assets/css/_style_login.css">
-    <link rel="stylesheet" type="text/css" href="assets/vendors/font-awesome/css/font-awesome.css" />
+    <link rel="icon" href="<?= BASEURL; ?>/assets/images/icon.png" type="image/gif">
+    <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>/assets/css/_style_login.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>/assets/vendors/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <title>Halaman Login</title>
 </head>

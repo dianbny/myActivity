@@ -15,7 +15,7 @@
 ?>
 <div class="container-form">
     <h5><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp; Form Update Activity</h5><br>
-    <form method="POST" action="update-activity-<?= $id; ?>" class="form-input">
+    <form method="POST" action="<?= BASEURL; ?>/update-activity/<?= $id; ?>" class="form-input">
         <label for="date">Date &nbsp;<span style="color:red;font-size:15px;">*</span></label><br>
         <input type="date" name="date" value="<?= $dataActivity['_tanggal']; ?>" required><br>
 
@@ -41,7 +41,7 @@
         <label for="info">Additional Information &nbsp;<span style="color:red;font-size:15px;">*</span></label><br>
         <textarea name="info" class="textarea" placeholder="Additional Information" required><?= $dataActivity['_keterangan']; ?></textarea>
 
-        <button type="button" class="btnForm" onclick="window.location.href = 'daily-activity'">Back</button>
+        <button type="button" class="btnForm" onclick="window.location.href = '<?= BASEURL; ?>/daily-activity'">Back</button>
         <input type="submit" name="save" value="Save" class="btnForm">
     </form>
 

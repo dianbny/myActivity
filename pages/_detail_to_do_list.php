@@ -14,7 +14,7 @@
 ?>
 <div class="container-form">
     <h5><i class="fa fa-pencil" aria-hidden="true"></i> &nbsp; Form Update Activity</h5><br>
-    <form method="POST" action="update-to-do-list-<?= $id; ?>" class="form-input">
+    <form method="POST" action="<?= BASEURL; ?>/update-to-do-list/<?= $id; ?>" class="form-input">
         <label for="date">Date &nbsp;<span style="color:red;font-size:15px;"></span></label><br>
         <input type="date" name="date" value="<?= $dataTDL['_tanggal']; ?>" required><br>
 
@@ -28,7 +28,7 @@
             <option value="Waiting">Waiting</option>
         </select>
 
-        <button type="button" class="btnForm" onclick="window.location.href = 'to-do-list'">Back</button>
+        <button type="button" class="btnForm" onclick="window.location.href = '<?= BASEURL; ?>/to-do-list'">Back</button>
         <input type="submit" name="save" value="Save" class="btnForm">
     </form>
 
