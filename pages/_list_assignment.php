@@ -3,6 +3,43 @@
         header('location:logout');
     }
 
+    if(isset($_GET['status'])){ 
+        if($_GET['status'] == "saved"){ ?>
+            <script>
+                setTimeout(function() { 
+                    swal({
+                        title: "Information",
+                        text: "Data has been saved",
+                        type: "success",
+                        confirmButtonText: "OK"
+                    },
+                    function(isConfirm){
+                        if (isConfirm) {
+                            window.location.href = "<?= BASEURL; ?>/assignment";
+                        }
+                }); }, 500);
+            </script>
+  <?php }
+        elseif($_GET['status'] == "deleted"){ ?>
+            <script>
+                setTimeout(function() { 
+                    swal({
+                        title: "Information",
+                        text: "Data has been deleted",
+                        type: "success",
+                        confirmButtonText: "OK"
+                    },
+                    function(isConfirm){
+                        if (isConfirm) {
+                            window.location.href = "<?= BASEURL; ?>/assignment";
+                        }
+                }); }, 500);
+            </script>
+  <?php }
+        
+    }
+
+
     $bulan;
     $tahun;
 
@@ -16,8 +53,10 @@
     }
 ?>
 
-<label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;Assignment</label>
-    <form method="POST" action="my-assignment" class="form-table">
+<h5><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;Assignment</h5>
+<div class="container-nd">
+
+    <form method="POST" action="<?= BASEURL; ?>/assignment" class="form-table">
         <select name="month" class="select" required>
             <option value="" selected>- Select Month -</option>
                 <?php
@@ -39,7 +78,15 @@
         </select>
         <input type="submit" name="search" value="Search">
     </form>
-        <span style="font-size:12px;">Assignment : <?= $bulan."/".$tahun; ?> | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:dodgerblue"></i>&nbsp; Request, <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Pending </span>
+        <div class="divJudul">
+            <span style="font-size:12px;">Assignment : <?= $bulan."/".$tahun; ?> | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:dodgerblue"></i>&nbsp; Request, <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Pending </span>
+            <div>
+                <a href="<?= BASEURL; ?>/new-assignment" class="linkTransferPg"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                <a href="<?= BASEURL; ?>/assignment" class="linkTransferPg"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+
+            </div>
+        </div>
+        
         <div class="table-layout">
             <table class="table-style">
                 <tr>
@@ -85,7 +132,7 @@
                                     ?>
                                 </td>
                                 <td><?= $row['_ket']; ?></td>
-                                <td style="text-align:center;"><a href="detail-assignment-<?= $row['_id_tugas']; ?>" class="linkDetail"><i class="fa fa-info-circle" aria-hidden="true"></i></a></td>
+                                <td style="text-align:center;"><a href="<?= BASEURL; ?>/detail-assignment/<?= $row['_id_tugas']; ?>" class="linkDetail"><i class="fa fa-info-circle" aria-hidden="true"></i></a></td>
                                 <td style="text-align:center;"><a href="javascript:void(0)" data-id="<?= $row['_id_tugas']; ?>" class="linkError konfirmDeleteAssignment"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
                             </tr>
                 <?php }
@@ -99,5 +146,4 @@
             </table>
         </div>
 
-<a href="new-assignment" class="linkTransferPg"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp; New</a>
-<a href="assignment" class="linkTransferPg"><i class="fa fa-refresh" aria-hidden="true"></i> &nbsp; Refresh</a>
+</div>
