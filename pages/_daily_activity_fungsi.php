@@ -11,10 +11,10 @@
     if(isset($_POST['search'])){
         $start = $_POST['start'];
         $end = $_POST['end'];
-        $cekDailyActivity = $getData->cekDAFungsiFromToTipe($dataUser['_fungsi'], $start, $end, $_POST['type']);
+        $cekDailyActivity = $getData->cekDAFungsiFromToUser($dataUser['_fungsi'], $start, $end, $_POST['engineer']);
         
         if($cekDailyActivity > 0){
-            $dataDailyActivity = $getData->ListDAFungsiFromToTipe($dataUser['_fungsi'], $start, $end, $_POST['type']);
+            $dataDailyActivity = $getData->ListDAFungsiFromToUser($dataUser['_fungsi'], $start, $end, $_POST['engineer']);
         }
         
     }
@@ -30,19 +30,29 @@
     }
 ?>
 
-<label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;Daily Activity</label>
+<h5><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;Daily Activity</h5>
+<div class="container-nd">
 
-    <form method="POST" action="daily-activity-fungsi" class="form-table">
-        <select name="type" class="select" required>
-            <option value="" selected>- Select Type -</option>
-            <option value="General Activity">General Activity</option>
-            <option value="Engineer Activity">Engineer Activity</option>
+    <form method="POST" action="<?= BASEURL; ?>/daily-activity-fungsi" class="form-table">
+        <select name="engineer" class="select" required>
+            <option value="" selected>- Select Engineer -</option>
+            <?php
+                foreach($getData->listEngineerbyFungsi($dataUser['_fungsi']) as $row){ ?>
+                    <option value="<?= $row['_id_pekerja']; ?>"><?= $row['_nama_pekerja']; ?></option>
+          <?php }
+            ?>  
         </select>
         &nbsp; From : <input type="date" name="start" value="<?= $start; ?>"> &nbsp; To : <input type="date" name="end" value="<?= $end; ?>" min="<?= date('Y-m-d'); ?>">
         <input type="submit" name="search" value="Search">
     </form>
 
-        <span style="font-size:12px;">Daily Activity | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Pending </span>
+        <div class="divJudul">
+            <span style="font-size:12px;">Daily Activity | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Pending </span>
+            <div>
+                <a href="<?= BASEURL; ?>/daily-activity-fungsi" class="linkTransferPg"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        
         <div class="table-layout">
             <table class="table-style">
                 <tr>
@@ -105,5 +115,6 @@
                 ?>
             </table>
         </div>
+</div>
 
-<a href="daily-activity-fungsi" class="linkTransferPg"><i class="fa fa-refresh" aria-hidden="true"></i> &nbsp; Refresh</a>
+
