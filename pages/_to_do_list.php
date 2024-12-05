@@ -3,6 +3,41 @@
         header('location:logout');
     }
 
+    if(isset($_GET['status'])){
+        if($_GET['status'] == "saved"){ ?>
+            <script>
+                setTimeout(function() { 
+                    swal({
+                        title: "Information",
+                        text: "Data has been saved",
+                        type: "success",
+                        confirmButtonText: "OK"
+                    },
+                    function(isConfirm){
+                        if (isConfirm) {
+                            window.location.href = "<?= BASEURL; ?>/to-do-list";
+                        }
+                }); }, 500);
+            </script>
+  <?php }
+        elseif($_GET['status'] == "deleted"){ ?>
+            <script>
+                setTimeout(function() { 
+                    swal({
+                        title: "Information",
+                        text: "Data has been deleted",
+                        type: "success",
+                        confirmButtonText: "OK"
+                    },
+                    function(isConfirm){
+                        if (isConfirm) {
+                            window.location.href = "<?= BASEURL; ?>/to-do-list";
+                        }
+                }); }, 500);
+            </script>
+  <?php }
+    }
+
     $bulan;
     $tahun;
 
@@ -16,7 +51,8 @@
     }
 ?>
 
-<label class="labelTitle"><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;To Do List</label>
+<h5><i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;To Do List</h5>
+<div class="container-nd">
 
     <form method="POST" action="to-do-list" class="form-table">
         <select name="month" class="select" required>
@@ -40,7 +76,14 @@
         </select>
         <input type="submit" name="search" value="Search">
     </form>
-        <span style="font-size:12px;">To Do List : <?= $bulan."/".$tahun; ?> | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Waiting </span>
+        <div class="divJudul">
+            <span style="font-size:12px;">To Do List : <?= $bulan."/".$tahun; ?> | Status :&nbsp; <i class="fa fa-circle" aria-hidden="true" style="color:green"></i>&nbsp; Done, <i class="fa fa-circle" aria-hidden="true" style="color:darkorange"></i>&nbsp; Waiting </span>                
+            <div>
+                <a href="<?= BASEURL; ?>/new-to-do-list" class="linkTransferPg"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                <a href="<?= BASEURL; ?>/to-do-list" class="linkTransferPg"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        
         <div class="table-layout">
             <table class="table-style">
                 <tr>
@@ -68,7 +111,7 @@
                                 <?php }
                                     ?>
                                 </td>
-                                <td style="text-align:center;"><a href="detail-to-do-list-<?= $row['_id']; ?>" class="linkDetail"><i class="fa fa-info-circle" aria-hidden="true"></i></a></td>
+                                <td style="text-align:center;"><a href="<?= BASEURL; ?>/detail-to-do-list/<?= $row['_id']; ?>" class="linkDetail"><i class="fa fa-info-circle" aria-hidden="true"></i></a></td>
                                 <td style="text-align:center;"><a href="javascript:void(0)" data-id="<?= $row['_id']; ?>" class="linkError konfirmDeleteTDL"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
                             </tr>
                   <?php }
@@ -82,5 +125,5 @@
             </table>
         </div>
 
-<a href="new-to-do-list" class="linkTransferPg"><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp; New List</a>
-<a href="to-do-list" class="linkTransferPg"><i class="fa fa-refresh" aria-hidden="true"></i> &nbsp; Refresh</a>
+
+</div>
