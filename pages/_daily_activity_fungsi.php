@@ -8,15 +8,14 @@
     $cekDailyActivity;
     $dataDailyActivity;
 
-    if(isset($_POST['search'])){
+    if(isset($_POST['search']) && $_POST['engineer'] != "All"){
         $start = $_POST['start'];
         $end = $_POST['end'];
-        $cekDailyActivity = $getData->cekDAFungsiFromToUser($dataUser['_fungsi'], $start, $end, $_POST['engineer']);
+        $cekDailyActivity = $getData->cekDAFungsiFromToEngineer($dataUser['_fungsi'], $start, $end, $_POST['engineer']);
         
         if($cekDailyActivity > 0){
-            $dataDailyActivity = $getData->ListDAFungsiFromToUser($dataUser['_fungsi'], $start, $end, $_POST['engineer']);
+            $dataDailyActivity = $getData->ListDAFungsiFromToEngineer($dataUser['_fungsi'], $start, $end, $_POST['engineer']);
         }
-        
     }
     else {
         $start = date('Y-m-d');
@@ -35,12 +34,18 @@
 
     <form method="POST" action="<?= BASEURL; ?>/daily-activity-fungsi" class="form-table">
         <select name="engineer" class="select" required>
-            <option value="" selected>- Select Engineer -</option>
             <?php
-                foreach($getData->listEngineerbyFungsi($dataUser['_fungsi']) as $row){ ?>
-                    <option value="<?= $row['_id_pekerja']; ?>"><?= $row['_nama_pekerja']; ?></option>
+                if(isset($_POST['search']) && $_POST['engineer'] != "All"){ ?>
+                    <option value="<?= $_POST['engineer']; ?>" selected><?php $detailEngineer = $getData->getDetailEngineer($_POST['engineer']); echo $detailEngineer['_engineer']; ?></option>
+         <?php  }
+            ?>
+            <option value="" <?= (isset($_POST['search']) && $_POST['engineer'] != "All") ? "" : "selected"; ?>>- Select Engineer -</option>
+            <?php
+                foreach($getData->listKodeEngineer() as $row){ ?>
+                    <option value="<?= $row['_id_engineer']; ?>"><?= $row['_engineer']; ?></option>
           <?php }
             ?>  
+            <option value="All">All Engineer</option>
         </select>
         &nbsp; From : <input type="date" name="start" value="<?= $start; ?>"> &nbsp; To : <input type="date" name="end" value="<?= $end; ?>" min="<?= date('Y-m-d'); ?>">
         <input type="submit" name="search" value="Search">

@@ -159,6 +159,19 @@
 			return $cekJumlah;
 		}
 
+		//Cek Daily Activity 
+		function cekDAFungsiFromToEngineer($id, $start, $end, $idengineer){
+			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
+			$startFilter = mysqli_real_escape_string($this->koneksi, $start);
+			$endFilter = mysqli_real_escape_string($this->koneksi, $end);
+			$idengineerFilter = mysqli_real_escape_string($this->koneksi, $idengineer);
+
+			$dataActivity = mysqli_query($this->koneksi,"SELECT * FROM _tb_daily_activity_app, _tb_pekerja_pegawai, _tb_fungsi, _tb_engineer WHERE _tb_daily_activity_app._id_pekerja = _tb_pekerja_pegawai._id_pekerja AND _tb_fungsi._id_fungsi = _tb_pekerja_pegawai._fungsi AND _tb_engineer._id_engineer = _tb_pekerja_pegawai._engineer AND _tb_pekerja_pegawai._fungsi = '$idFilter' AND _tb_daily_activity_app._tanggal BETWEEN '$startFilter' AND '$endFilter' AND _tb_pekerja_pegawai._engineer = '$idengineerFilter'");
+			$cekJumlah = mysqli_num_rows($dataActivity);
+			
+			return $cekJumlah;
+		}
+
 		//List Daily Activity
 		function ListDailyActivityUser($id, $bln, $thn){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
@@ -254,6 +267,21 @@
 			$iduserFilter = mysqli_real_escape_string($this->koneksi, $iduser);
 			
 			$dataActivity = mysqli_query($this->koneksi,"SELECT _tb_daily_activity_app._id_aktifitas, _tb_daily_activity_app._tanggal, _tb_pekerja_pegawai._id_pekerja, _tb_pekerja_pegawai._nama_pekerja, _tb_daily_activity_app._tipe_aktifitas, _tb_daily_activity_app._aktifitas, _tb_daily_activity_app._status, _tb_daily_activity_app._keterangan FROM _tb_daily_activity_app, _tb_pekerja_pegawai, _tb_fungsi WHERE _tb_daily_activity_app._id_pekerja = _tb_pekerja_pegawai._id_pekerja AND _tb_fungsi._id_fungsi = _tb_pekerja_pegawai._fungsi AND _tb_pekerja_pegawai._fungsi = '$idFilter' AND _tb_daily_activity_app._tanggal BETWEEN '$startFilter' AND '$endFilter' AND _tb_pekerja_pegawai._id_pekerja = '$iduserFilter' ORDER BY _tb_daily_activity_app._tanggal ASC, _tb_daily_activity_app._id_aktifitas DESC");
+			while($listActivity = mysqli_fetch_assoc($dataActivity)){
+				$result[] = $listActivity;
+			}
+
+			return $result;
+		}
+
+		//List Daily Activity
+		function ListDAFungsiFromToEngineer($id, $start, $end, $idengineer){
+			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
+			$startFilter = mysqli_real_escape_string($this->koneksi, $start);
+			$endFilter = mysqli_real_escape_string($this->koneksi, $end);
+			$idengineerFilter = mysqli_real_escape_string($this->koneksi, $idengineer);
+			
+			$dataActivity = mysqli_query($this->koneksi,"SELECT _tb_daily_activity_app._id_aktifitas, _tb_daily_activity_app._tanggal, _tb_pekerja_pegawai._id_pekerja, _tb_pekerja_pegawai._nama_pekerja, _tb_daily_activity_app._tipe_aktifitas, _tb_daily_activity_app._aktifitas, _tb_daily_activity_app._status, _tb_daily_activity_app._keterangan FROM _tb_daily_activity_app, _tb_pekerja_pegawai, _tb_fungsi, _tb_engineer WHERE _tb_daily_activity_app._id_pekerja = _tb_pekerja_pegawai._id_pekerja AND _tb_fungsi._id_fungsi = _tb_pekerja_pegawai._fungsi AND _tb_engineer._id_engineer = _tb_pekerja_pegawai._engineer AND _tb_pekerja_pegawai._fungsi = '$idFilter' AND _tb_daily_activity_app._tanggal BETWEEN '$startFilter' AND '$endFilter' AND _tb_pekerja_pegawai._engineer = '$idengineerFilter' ORDER BY _tb_daily_activity_app._tanggal ASC, _tb_daily_activity_app._id_aktifitas DESC");
 			while($listActivity = mysqli_fetch_assoc($dataActivity)){
 				$result[] = $listActivity;
 			}
@@ -1486,7 +1514,26 @@
 			return $getDataMCU;
 		}
 
+		//List Data Engineer
+        function listKodeEngineer(){
 
+			$dataKode = mysqli_query($this->koneksi,"SELECT * FROM _tb_engineer WHERE _id_engineer != '0'");
+			while($listKode = mysqli_fetch_assoc($dataKode)){
+				$result[] = $listKode;
+			}
+
+			return $result;
+		}
+
+		//Get Data MCU
+		function getDetailEngineer($id){
+			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
+			
+			$dataEngineer = mysqli_query($this->koneksi,"SELECT * FROM _tb_engineer WHERE _id_engineer = '$idFilter'");
+			$getDataEngineer = mysqli_fetch_assoc($dataEngineer);
+			
+			return $getDataEngineer;
+		}
 
 
 
