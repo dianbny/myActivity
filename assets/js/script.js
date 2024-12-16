@@ -137,5 +137,11 @@ $(document).ready(function(){
         });
     });
 
+    //Min Date
+    $('#start').change(function(){
+        const start = $(this).val();
+        $('#end').attr('min', start);
+    });
+
     
 });

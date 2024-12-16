@@ -8,13 +8,23 @@
     $cekDailyActivity;
     $dataDailyActivity;
 
-    if(isset($_POST['search']) && $_POST['engineer'] != "All"){
+    if(isset($_POST['search'])){
         $start = $_POST['start'];
         $end = $_POST['end'];
-        $cekDailyActivity = $getData->cekDAFungsiFromToEngineer($dataUser['_fungsi'], $start, $end, $_POST['engineer']);
+
+        if($_POST['engineer'] != "All"){
+            $cekDailyActivity = $getData->cekDAFungsiFromToEngineer($dataUser['_fungsi'], $start, $end, $_POST['engineer']);
+            
+            if($cekDailyActivity > 0){
+                $dataDailyActivity = $getData->ListDAFungsiFromToEngineer($dataUser['_fungsi'], $start, $end, $_POST['engineer']);
+            }
+        }
+        else {
+            $cekDailyActivity = $getData->cekDAFungsiFromTo($dataUser['_fungsi'], $start, $end);
         
-        if($cekDailyActivity > 0){
-            $dataDailyActivity = $getData->ListDAFungsiFromToEngineer($dataUser['_fungsi'], $start, $end, $_POST['engineer']);
+            if($cekDailyActivity > 0){
+                $dataDailyActivity = $getData->ListDAFungsiFromTo($dataUser['_fungsi'], $start, $end);
+            }
         }
     }
     else {
@@ -47,7 +57,7 @@
             ?>  
             <option value="All">All Engineer</option>
         </select>
-        &nbsp; From : <input type="date" name="start" value="<?= $start; ?>"> &nbsp; To : <input type="date" name="end" value="<?= $end; ?>" min="<?= date('Y-m-d'); ?>">
+        &nbsp; From : <input type="date" name="start" id="start" value="<?= $start; ?>"> &nbsp; To : <input type="date" name="end" id="end" value="<?= $end; ?>" min="" >
         <input type="submit" name="search" value="Search">
     </form>
 
