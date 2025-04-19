@@ -57,7 +57,7 @@
             ?>  
             <option value="All">All Engineer</option>
         </select>
-        &nbsp; From : <input type="date" name="start" id="start" value="<?= $start; ?>"> &nbsp; To : <input type="date" name="end" id="end" value="<?= $end; ?>" min="" >
+        &nbsp; From : <input type="date" name="start" id="start" value="<?= $start; ?>"> &nbsp; To : <input type="date" name="end" id="end" value="<?= $end; ?>" min="<?= date('Y-m-d'); ?>" >
         <input type="submit" name="search" value="Search">
     </form>
 
