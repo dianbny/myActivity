@@ -333,7 +333,7 @@
                     <span class="color6">To-Do List</span> 
                     <div class="table-dashboard">
                     <?php
-                        if($getData->cekToDoList($dataUser['_id_pekerja'], date('m'), date('Y')) > 0){
+                        if($getData->cekToDoListDash($dataUser['_id_pekerja'], date('d'), date('m'), date('Y')) > 0){
                             foreach($getData->ListToDoListLimit($dataUser['_id_pekerja'], date('d'), date('m'), date('Y')) as $row){ ?>
                                 <div class="kanban" style="border-left:6px solid <?= ($row['_tanggal'] == date('Y-m-d')) ? "#8B0000" : "#FF8C00"; ?>">
                                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp; <?= strftime('%d %B %Y', strtotime($row['_tanggal'])); ?>
