@@ -443,6 +443,19 @@
 			return $cekJumlah;
 		}
 
+		//Cek To Do List
+		function cekToDoListDash($id, $tgl, $bln, $thn){
+			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
+			$tglFilter = mysqli_real_escape_string($this->koneksi, $tgl);
+			$blnFilter = mysqli_real_escape_string($this->koneksi, $bln);
+			$thnFilter = mysqli_real_escape_string($this->koneksi, $thn);
+
+			$dataTDL = mysqli_query($this->koneksi,"SELECT * FROM _tb_to_do_list WHERE _id_pekerja = '$idFilter' AND DAY(_tanggal) >= '$tglFilter' AND MONTH(_tanggal) = '$blnFilter' AND YEAR(_tanggal) = '$thnFilter'");
+			$cekJumlah = mysqli_num_rows($dataTDL);
+			
+			return $cekJumlah;
+		}
+
 		//Cek To Do List by Status
 		function cekTDLUserbyStatus($id, $thn, $status){
 			$idFilter = mysqli_real_escape_string($this->koneksi, $id);
